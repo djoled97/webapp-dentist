@@ -8,16 +8,17 @@ export class AppController {
   constructor(
     private korisnikService:KorisnikService
   ){}
+  
   @Get()
-  getHello(): string {
-    return "hello"
+  getHello(): Promise<Korisnik[]> {
+    return   this.korisnikService.getAll()
   }
   @Get('api/korisnik')
   getAllUsers():Promise<Korisnik[]>{
   return   this.korisnikService.getAll()
   }
-@Get('/test')
-  test(){
+@Get('s')
+  test():string{
     return "test";
   }
 }
