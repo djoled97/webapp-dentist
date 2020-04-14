@@ -16,5 +16,8 @@ export class AppController {
   getAllUsers():Promise<Korisnik[]>{
   return   this.korisnikService.getAll()
   }
-
+@Get('/test')
+  test(){
+    return "test";
+  }
 }
