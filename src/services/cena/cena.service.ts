@@ -9,4 +9,6 @@ export class CenaService extends TypeOrmCrudService<Cena>{
     constructor(@InjectRepository(Cena) private readonly cena: Repository<Cena>
     ) { super(cena); }
 
+
+    
 }

@@ -15,14 +15,14 @@ export class Cena {
   @PrimaryGeneratedColumn({ type: "int", name: "cena_id" })
   cenaId: number;
 
-  @Column("varchar", { name: "cena_jedan", length: 255 })
-  cenaJedan: string;
+  @Column( {type:"int", name: "cena_jedan" })
+  cenaJedan: number;
 
-  @Column("varchar", { name: "cena_paket", length: 255 })
-  cenaPaket: string;
+  @Column( {type:"int", name: "cena_paket"})
+  cenaPaket: number;
 
-  @Column("varchar", { name: "cena_uzrast", length: 255 })
-  cenaUzrast: string;
+  @Column( {type:"int", name: "cena_uzrast"})
+  cenaUzrast: number;
 
   @Column("int", { name: "usluga_id", unique: true })
   uslugaId: number;
