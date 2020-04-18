@@ -5,7 +5,7 @@ import { Database } from "config/database";
 import { AddKorisnikDto } from "src/dtos/korisnik/add.korisnik.dto";
 import { editKorsinikDto } from "src/dtos/korisnik/edit.korisnik.dto";
 import { ApiResponse } from "src/misc/api.response.class";
-
+const rateLimit=require("express-rate-limit");
 @Controller('api/korisnik')
 export class KorisnikController {
 
