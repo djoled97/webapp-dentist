@@ -15,6 +15,7 @@ import { KartonPacijentService } from './services/karton/karton-pacijent.service
 import { KartonPacijentController } from './controllers/api/karton-pacijent.controller';
 import { UslugaService } from './services/usluga/usluga.service';
 import { UslugaController } from './controllers/api/usluga.controller';
+import { AuthService } from './auth/auth/auth.service';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -31,6 +32,6 @@ import { UslugaController } from './controllers/api/usluga.controller';
     ])
   ],
   controllers: [AppController,KorisnikController,CenaController,KartonPacijentController,UslugaController],
-  providers: [KorisnikService,CenaService,KartonPacijentService,UslugaService],
+  providers: [KorisnikService,CenaService,KartonPacijentService,UslugaService,AuthService],
 })
 export class AppModule {}

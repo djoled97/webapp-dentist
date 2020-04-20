@@ -17,11 +17,11 @@ export class KorisnikController {
         return this.korisnikService.getAll()
     }
     @Get(':id')
-    getById(@Param('id') id: number): Promise<Korisnik | ApiResponse> {
+    getById(@Param('id') id: string): Promise<Korisnik | ApiResponse> {
         
 
         return new Promise(async (resolve) => {
-            let korisnik = await this.korisnikService.getById(id)
+            let korisnik = await this.korisnikService.getById(id);
             if(korisnik===undefined){
                 resolve(new ApiResponse("error",3001))
             }

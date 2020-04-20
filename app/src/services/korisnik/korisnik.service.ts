@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Korisnik } from 'entities/korisnik.entity';
-import { Repository } from 'typeorm';
+import { Repository, Connection, getConnection, getRepository } from 'typeorm';
 import { AddKorisnikDto } from 'src/dtos/korisnik/add.korisnik.dto';
 import { editKorsinikDto } from 'src/dtos/korisnik/edit.korisnik.dto';
 import { ApiResponse } from 'src/misc/api.response.class';
@@ -12,17 +12,26 @@ export class KorisnikService {
     constructor(
         @InjectRepository(Korisnik) private readonly korisnik: Repository<Korisnik>
     ) { }
-
+        findOne(user:string){
+            
+            // return this.korisnik
+            
+        }
 
     getAll(): Promise<Korisnik[]> {
 
         return this.korisnik.find();
     }
-    getById(id: number): Promise<Korisnik> {
+     async getById(username: string): Promise<Korisnik> {
         
-      return  this.korisnik.findOne(id);
+        return  this.korisnik.findOne(username);
 
-    
+
+        // let newKorisnik=await getRepository(Korisnik).createQueryBuilder("korisnik")
+        // .where("username=" + id).getOne()
+        // return new Promise( (resolve)=>{
+        //     resolve(newKorisnik);
+        // })
     }
     add(data: AddKorisnikDto): Promise<Korisnik|ApiResponse> {
         const crypto = require('crypto');
