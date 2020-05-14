@@ -4,9 +4,10 @@ import { Cena } from "entities/cena.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Usluga } from "entities/usluga.entity";
-
 import { ApiResponse } from "src/misc/api.response.class";
 import { AddUslugaDto } from "src/dtos/usluga/add.usluga.dto";
+
+
 @Injectable()
 export class UslugaService extends TypeOrmCrudService<Usluga>{
 
@@ -32,7 +33,7 @@ export class UslugaService extends TypeOrmCrudService<Usluga>{
 
        this.cena.save(newCena);
      
-    return await   this.usluga.findOne(savedUsluga.uslugaId,{
+    return await  this.usluga.findOne(savedUsluga.uslugaId,{
            relations:[
                "cena"
            ]

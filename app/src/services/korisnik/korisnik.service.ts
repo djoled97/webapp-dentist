@@ -5,7 +5,8 @@ import { Repository, Connection, getConnection, getRepository } from 'typeorm';
 import { AddKorisnikDto } from 'src/dtos/korisnik/add.korisnik.dto';
 import { editKorsinikDto } from 'src/dtos/korisnik/edit.korisnik.dto';
 import { ApiResponse } from 'src/misc/api.response.class';
-import { resolve } from 'dns';
+import * as crypto from 'crypto';
+
 
 @Injectable()
 export class KorisnikService {
@@ -22,19 +23,32 @@ export class KorisnikService {
 
         return this.korisnik.find();
     }
-     async getById(username: string): Promise<Korisnik> {
+
+    getById(id: number): Promise<Korisnik> {
         
-        return  this.korisnik.findOne(username);
+        return  this.korisnik.findOne(id); // Ovde si stavio da se trazi po argumentu username:string, a treba po id:number !
 
-
-        // let newKorisnik=await getRepository(Korisnik).createQueryBuilder("korisnik")
+         // let newKorisnik=await getRepository(Korisnik).createQueryBuilder("korisnik")
         // .where("username=" + id).getOne()
         // return new Promise( (resolve)=>{
         //     resolve(newKorisnik);
         // })
     }
+
+    async getByUsername (usernameString: string): Promise <Korisnik | null> {
+        const korisnik = await this.korisnik.findOne({
+            username: usernameString
+        });
+
+        if (korisnik) {
+            return korisnik
+        }
+
+        return null;
+    }
+
     add(data: AddKorisnikDto): Promise<Korisnik|ApiResponse> {
-        const crypto = require('crypto');
+
         const passwordHash = crypto.createHash('sha512');
         passwordHash.update(data.passwordHash);
         const passwordHashString = passwordHash.digest('hex').toUpperCase();
@@ -50,7 +64,7 @@ export class KorisnikService {
         this.korisnik.save(korisnik)
         .then(data => resolve(data))
         .catch(error =>{
-            const response:ApiResponse=new ApiResponse("eror",-1001);
+            const response:ApiResponse=new ApiResponse("error",-1001);
             resolve(response);
         } )
        })
@@ -58,7 +72,7 @@ export class KorisnikService {
 
 
     }
-    async   editById(id: number, data: editKorsinikDto): Promise<Korisnik| ApiResponse > {
+    async editById(id: number, data: editKorsinikDto): Promise<Korisnik| ApiResponse > {
         let korisnik: Korisnik = await this.korisnik.findOne(id);
         if(korisnik===undefined){
             return new Promise((resolve)=>{

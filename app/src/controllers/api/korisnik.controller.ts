@@ -1,7 +1,6 @@
 import { Controller, Get, Param, Put, Body, Post, Delete } from "@nestjs/common";
 import { KorisnikService } from "src/services/korisnik/korisnik.service";
 import { Korisnik } from "entities/korisnik.entity";
-import { Database } from "config/database";
 import { AddKorisnikDto } from "src/dtos/korisnik/add.korisnik.dto";
 import { editKorsinikDto } from "src/dtos/korisnik/edit.korisnik.dto";
 import { ApiResponse } from "src/misc/api.response.class";
@@ -17,13 +16,13 @@ export class KorisnikController {
         return this.korisnikService.getAll()
     }
     @Get(':id')
-    getById(@Param('id') id: string): Promise<Korisnik | ApiResponse> {
+    getById(@Param('id') id: number): Promise<Korisnik | ApiResponse> {
         
 
         return new Promise(async (resolve) => {
             let korisnik = await this.korisnikService.getById(id);
             if(korisnik===undefined){
-                resolve(new ApiResponse("error",3001))
+                resolve(new ApiResponse("error", 3001))
             }
             resolve(korisnik)
         })
@@ -41,6 +40,8 @@ export class KorisnikController {
 
         return this.korisnikService.editById(id, data);
     }
+   
+   
     // @Delete(':id')
     // deleteUser(@Param('id') id:number){
     //     return this.korisnikService.delete(id);

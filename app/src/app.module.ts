@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Database } from 'config/database';
@@ -16,6 +16,10 @@ import { KartonPacijentController } from './controllers/api/karton-pacijent.cont
 import { UslugaService } from './services/usluga/usluga.service';
 import { UslugaController } from './controllers/api/usluga.controller';
 import { AuthService } from './auth/auth/auth.service';
+import { AuthController } from './controllers/api/auth.controller';
+import { AuthMiddleware } from './middlewares/auth.middleware';
+
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -28,10 +32,37 @@ import { AuthService } from './auth/auth/auth.service';
       entities:[Korisnik,Cena,KartonPacijent,Usluga,Pregled]
     }),
     TypeOrmModule.forFeature([
-      Korisnik,Cena,KartonPacijent,Usluga,Pregled
+      Korisnik,
+      Cena,
+      KartonPacijent,
+      Usluga,
+      Pregled
     ])
   ],
-  controllers: [AppController,KorisnikController,CenaController,KartonPacijentController,UslugaController],
-  providers: [KorisnikService,CenaService,KartonPacijentService,UslugaService,AuthService],
+  controllers: [
+    AppController,
+    KorisnikController,
+    CenaController,
+    KartonPacijentController,
+    UslugaController,
+    AuthController,
+  ],
+  providers: [
+    KorisnikService,
+    CenaService,
+    KartonPacijentService,
+    UslugaService,
+    AuthService
+  ],
+  exports: [
+    KorisnikService,
+  ]
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+    .apply(AuthMiddleware)
+    .exclude('auth/*')
+    .forRoutes('api/*');
+  }
+}
