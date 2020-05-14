@@ -1,0 +1,994 @@
+{
+	"info": {
+		"_postman_id": "85cca6dc-8917-421f-9d1b-a1fa4f6e00f4",
+		"name": "Web App - Dentist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"djole97\",\n\t\"password\": \"djoletovajakasifra\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login - when the user exists and the password is correct",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"djole97\",\n\t\"password\": \"djoletovajakasifra\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "297"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"129-1rReByich4wdFlHlj+/+rc/0qk8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 07:51:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"korisnikId\": 7,\n    \"username\": \"djole97\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrb3Jpc25pa0lkIjo3LCJ1c2VybmFtZSI6ImRqb2xlOTciLCJleHBEYXRlIjoxNTkwNjUyMjYwLjIyOSwiaXAiOiI6OjEiLCJ1c2VyQWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjI0LjEiLCJpYXQiOjE1ODk0NDI2NjB9.VMjdZJyWFIlBhuO8qWtg-EoyYJBPd_1YpjDRxE2ueW8\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Korisnik",
+			"item": [
+				{
+					"name": "Prikaz svih korisnika",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/korisnik",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"korisnik"
+							]
+						},
+						"description": "Showing all users"
+					},
+					"response": []
+				},
+				{
+					"name": "Prikaz jednog korisnika",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/korisnik/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"korisnik",
+								"7"
+							]
+						},
+						"description": "Get a single user"
+					},
+					"response": [
+						{
+							"name": "Prikaz jednog korisnika - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/korisnik/7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"korisnik",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "272"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"110-pX2EEMt8lv6JD7pcGNETS4mABfA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 09:40:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"korisnikId\": 7,\n    \"ime\": \"Djordje\",\n    \"prezime\": \"Dimitrijev\",\n    \"email\": \"djordjedimitrijev@gmail.com\",\n    \"username\": \"djole97\",\n    \"passwordHash\": \"DDE38222840592422CB0609EB1BD7030DAAE9D1B52AB5A40B0194DDB9344E7C3F62B343AC88C489E520510059E38DC67CE51A4F6A4BFD759FCCD483EBF8FD167\",\n    \"isAdmin\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Pravljenje novog korisnika",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ime\": \"Marko\",\r\n    \"prezime\": \"Markovic\",\r\n    \"email\": \"markomarkovic@gmail.com\",\r\n    \"username\": \"marko22\",\r\n    \"passwordHash\": \"markovaSifra\",\r\n    \"isAdmin?\": \"true\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/korisnik",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"korisnik"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "Adding a new user"
+					},
+					"response": [
+						{
+							"name": "Pravljenje novog korisnika - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ime\": \"Marko\",\r\n    \"prezime\": \"Markovic\",\r\n    \"email\": \"markomarkovic@gmail.com\",\r\n    \"username\": \"marko22\",\r\n    \"passwordHash\": \"markovaSifra\",\r\n    \"isAdmin?\": \"true\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/korisnik/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"korisnik",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-WUtMuhRKxO/RUYGn61ApeL4Ys+Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 09:44:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ime\": \"Marko\",\n    \"prezime\": \"Markovic\",\n    \"email\": \"markomarkovic@gmail.com\",\n    \"username\": \"marko22\",\n    \"passwordHash\": \"79555906C534551881B44996DF24488E01671B95DD0BC24C99F7CE76B4229C4B9AC033305D9A1A70435C6674AA15F0514FC537AF965EDC7E747D3413F09EDD63\",\n    \"korisnikId\": 8\n}"
+						}
+					]
+				},
+				{
+					"name": "Izmena postojeceg korisnika",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nikoladjikic22@gmail.com\",\r\n    \"passwordHash\": \"nekaPredobraSifra\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/korisnik/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"korisnik",
+								"3"
+							]
+						},
+						"description": "Edit an existing user"
+					},
+					"response": [
+						{
+							"name": "Izmena postojeceg korisnika - success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"nikoladjikic22@gmail.com\",\r\n    \"passwordHash\": \"nekaPredobraSifra\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/korisnik/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"korisnik",
+										"3"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "264"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"108-HX9pF6MaDAAnJAXvGeEMQMHm0vw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 09:47:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"korisnikId\": 3,\n    \"ime\": \"Nikola\",\n    \"prezime\": \"Djikic\",\n    \"email\": \"nikoladjikic22@gmail.com\",\n    \"username\": \"djika22\",\n    \"passwordHash\": \"462E35CFEC64F25516B6468D584D004B061B1E95A1228112F46F133D6A83949985A7884948D28CD18B4D1BA6BCDE57FD7ECC63487A5E30E02E903B6B69B9D431\",\n    \"isAdmin\": 0\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrb3Jpc25pa0lkIjo3LCJ1c2VybmFtZSI6ImRqb2xlOTciLCJleHBEYXRlIjoxNTkwNjUyMjYwLjIyOSwiaXAiOiI6OjEiLCJ1c2VyQWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjI0LjEiLCJpYXQiOjE1ODk0NDI2NjB9.VMjdZJyWFIlBhuO8qWtg-EoyYJBPd_1YpjDRxE2ueW8",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "61666edf-5b0b-4ed1-a90c-d4dea2809a69",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "19e14f9a-fa13-47fc-97dc-e4d6af735cd5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cena",
+			"item": [
+				{
+					"name": "Prikaz svih cena",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cena/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cena",
+								""
+							]
+						},
+						"description": "Creating a price"
+					},
+					"response": [
+						{
+							"name": "Prikaz cene - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/cena/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cena",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-0o8PWsXTxUB1AE9b0yFEVcTi+UQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 11:19:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"cenaId\": 29,\n        \"cenaJedan\": 1000,\n        \"cenaPaket\": 850,\n        \"cenaUzrast\": 785,\n        \"uslugaId\": 86,\n        \"usluga\": {\n            \"uslugaId\": 86,\n            \"kataloskiBroj\": 1,\n            \"nazivUsluge\": \"1\",\n            \"opis\": \"Plombiranje\",\n            \"kategorija\": \"Popravka\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Prikaz jedne cene",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cena/29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cena",
+								"29"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Prikaz jedne usluge - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/cena/29",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cena",
+										"29"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-AOE6W59PPlRFr3CiE2rjAt46D4c\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 May 2020 11:26:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cenaId\": 29,\n    \"cenaJedan\": 1000,\n    \"cenaPaket\": 850,\n    \"cenaUzrast\": 785,\n    \"uslugaId\": 86,\n    \"usluga\": {\n        \"uslugaId\": 86,\n        \"kataloskiBroj\": 1,\n        \"nazivUsluge\": \"1\",\n        \"opis\": \"Plombiranje\",\n        \"kategorija\": \"Popravka\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Izmena jedne cene",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cenaJedan\": \"1000\",\r\n    \"cenaPaket\": \"850\",\r\n    \"cenaUzrast\": \"785\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cena/31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cena",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dodavanje nove cene",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cenaJedan\": 1000,\r\n    \"cenaPaket\": 850,\r\n    \"cenaUzrast\": 785,\r\n    \"uslugaId\": 89\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cena/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cena",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Price",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrb3Jpc25pa0lkIjo3LCJ1c2VybmFtZSI6ImRqb2xlOTciLCJleHBEYXRlIjoxNTkwNjUyMjYwLjIyOSwiaXAiOiI6OjEiLCJ1c2VyQWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjI0LjEiLCJpYXQiOjE1ODk0NDI2NjB9.VMjdZJyWFIlBhuO8qWtg-EoyYJBPd_1YpjDRxE2ueW8",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "afecbb45-f7fb-4316-86e3-08ed122ea239",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "19bce028-f81e-425c-abf8-1f8b35550646",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usluga",
+			"item": [
+				{
+					"name": "Prikaz svih usluga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/usluga/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usluga",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prikaz jedne usluge",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/usluga/86",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usluga",
+								"86"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Izmena jedne usluge",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"kataloskiBroj\": 4,\r\n    \"nazivUsluge\": \"Ciscenje kamenca\",\r\n    \"opis\": \"Ultrazvucno ciscenje kamenca\",\r\n    \"kategorija\": \"Higijena zuba\"\r\n}   "
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/usluga/88",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usluga",
+								"88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dodavanje nove usluge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"kataloskiBroj\": 3,\n    \"nazivUsluge\": \"Fiksna proteza\",\n    \"opis\": \"Fiksna proteza za svakodnevno nosenje\",\n    \"kategorija\": \"Dentalna pomagala\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/usluga/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usluga",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrb3Jpc25pa0lkIjo3LCJ1c2VybmFtZSI6ImRqb2xlOTciLCJleHBEYXRlIjoxNTkwNjUyMjYwLjIyOSwiaXAiOiI6OjEiLCJ1c2VyQWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjI0LjEiLCJpYXQiOjE1ODk0NDI2NjB9.VMjdZJyWFIlBhuO8qWtg-EoyYJBPd_1YpjDRxE2ueW8",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6ef96052-e50d-4972-a887-5b24edcb710b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d520f249-3048-4d00-9111-c5f582368f62",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Karton pacijent",
+			"item": [
+				{
+					"name": "Prikaz svih kartona pacijenata",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/karton/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"karton",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prikaz odredjenog kartona pacijenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/karton/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"karton",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Izmena odredjenog kartona pacijenta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ime\": \"Darko\",\n    \"prezime\": \"Petrovic\",\n    \"datumRodjenja\": \"12.12.2001\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/karton/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"karton",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dodavanje novog kartona pacijenta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ime\": \"Mirko\",\r\n    \"prezime\": \"Radanovic\",\r\n    \"datumRodjenja\": \"03.06.1991\",\r\n    \"korisnikId\": 8\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/karton/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"karton",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrb3Jpc25pa0lkIjo3LCJ1c2VybmFtZSI6ImRqb2xlOTciLCJleHBEYXRlIjoxNTkwNjUyMjYwLjIyOSwiaXAiOiI6OjEiLCJ1c2VyQWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjI0LjEiLCJpYXQiOjE1ODk0NDI2NjB9.VMjdZJyWFIlBhuO8qWtg-EoyYJBPd_1YpjDRxE2ueW8",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3228d4c2-a0ed-448d-8e2b-66d933b454b8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f6ad2f7-76e1-4a39-80e1-add8b4f6c887",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
