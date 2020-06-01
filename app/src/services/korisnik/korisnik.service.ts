@@ -23,7 +23,22 @@ export class KorisnikService {
 
         return this.korisnik.find();
     }
-
+   async getByRole(id:number,role:string):Promise<Korisnik>{
+    let builder;
+    if(role==="admin"){  
+     builder=await this.korisnik.createQueryBuilder("korisnik")
+        .where("korisnik.korisnikId LIKE :id ",{id})
+        .andWhere("korisnik.isAdmin LIKE :isAdmin",{isAdmin:1});
+        
+    }
+    else{
+         builder=await this.korisnik.createQueryBuilder("korisnik")
+        .where("korisnik.korisnikId LIKE :id ",{id})
+        .andWhere("korisnik.isAdmin LIKE :isAdmin",{isAdmin:0});
+    }
+        return builder.getOne();
+        
+    }
     getById(id: number): Promise<Korisnik> {
         
         return  this.korisnik.findOne(id); // Ovde si stavio da se trazi po argumentu username:string, a treba po id:number !

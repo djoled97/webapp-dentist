@@ -1,10 +1,12 @@
-import { Controller, Get, Param, Put, Body, Post, Delete } from "@nestjs/common";
+import { Controller, Get, Param, Put, Body, Post, Delete, UseGuards } from "@nestjs/common";
 import { KorisnikService } from "src/services/korisnik/korisnik.service";
 import { Korisnik } from "entities/korisnik.entity";
 import { AddKorisnikDto } from "src/dtos/korisnik/add.korisnik.dto";
 import { editKorsinikDto } from "src/dtos/korisnik/edit.korisnik.dto";
 import { ApiResponse } from "src/misc/api.response.class";
-const rateLimit=require("express-rate-limit");
+import { AllowToRoles } from "src/misc/allow.to.roles.descriptor";
+import { RoleCheckerGuard } from "src/misc/role.checker.guard";
+
 @Controller('api/korisnik')
 export class KorisnikController {
 
@@ -12,10 +14,14 @@ export class KorisnikController {
 
 
     @Get()
+    @UseGuards(RoleCheckerGuard)
+    @AllowToRoles('admin')
     getAllUsers(): Promise<Korisnik[]> {
         return this.korisnikService.getAll()
     }
     @Get(':id')
+    @UseGuards(RoleCheckerGuard)
+    @AllowToRoles('admin')
     getById(@Param('id') id: number): Promise<Korisnik | ApiResponse> {
         
 
@@ -32,6 +38,8 @@ export class KorisnikController {
 
 
     @Put()
+    @UseGuards(RoleCheckerGuard)
+    @AllowToRoles('admin')
     addUser(@Body() data: AddKorisnikDto): Promise<Korisnik | ApiResponse> {
         return this.korisnikService.add(data);
     }

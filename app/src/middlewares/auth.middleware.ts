@@ -2,7 +2,7 @@ import { NestMiddleware, HttpException, HttpStatus, Injectable } from "@nestjs/c
 import { NextFunction, Request, Response } from "express";
 import { KorisnikService } from "src/services/korisnik/korisnik.service";
 import * as jwt from 'jsonwebtoken';
-import { JwtDataKorisnikDto } from "src/dtos/korisnik/jwt.data.korisnik.dto";
+import { JwtDataDto } from "src/dtos/auth/jwt.data.dto";
 import { jwtSecret } from "config/jwt.secret";
 
 @Injectable()
@@ -23,7 +23,7 @@ export class AuthMiddleware implements NestMiddleware {
 
         const tokenString = tokenParts[1];
 
-        const jwtData: JwtDataKorisnikDto = jwt.verify(tokenString, jwtSecret);
+        const jwtData: JwtDataDto = jwt.verify(tokenString, jwtSecret);
         if (!jwtData) {
             throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
         }
@@ -35,19 +35,27 @@ export class AuthMiddleware implements NestMiddleware {
         if (jwtData.userAgent !== req.headers["user-agent"]) {
             throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
         }
-
-        const korisnik = await this.korisnikService.getById(jwtData.korisnikId);
+        if(jwtData.role==="admin"){
+        const admin = await this.korisnikService.getByRole(jwtData.korisnikId,jwtData.role);
+            
+        if (!admin) { 
+            throw new HttpException('Account not found', HttpStatus.UNAUTHORIZED);
+        }
+    }
+    else if(jwtData.role==="user"){
+        const korisnik = await this.korisnikService.getByRole(jwtData.korisnikId,jwtData.role);
+        
         if (!korisnik) {
             throw new HttpException('Account not found', HttpStatus.UNAUTHORIZED);
         }
-        
+    }
         
         const currentTimeStamp = new Date().getTime() / 1000;
 
         if (currentTimeStamp >= jwtData.expDate) {
             throw new HttpException('The token has expired', HttpStatus.UNAUTHORIZED);
         }
-
+        req.token=jwtData;
         next();
     }
 }

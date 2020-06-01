@@ -1,4 +1,6 @@
-export class JwtDataKorisnikDto {
+export class JwtDataDto {
+    
+    role:"admin"|"user";
     korisnikId: number;
     username: string;
     expDate: number; // UNIX timestamp
@@ -7,6 +9,8 @@ export class JwtDataKorisnikDto {
 
     toPlainObject() {
         return {
+            
+            role:this.role,
             korisnikId: this.korisnikId,
             username: this.username,
             expDate: this.expDate,
