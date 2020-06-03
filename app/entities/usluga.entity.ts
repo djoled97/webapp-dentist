@@ -7,6 +7,7 @@ import {
 } from "typeorm";
 import { Cena } from "./cena.entity";
 import { Pregled } from "./pregled.entity";
+import  * as Validator from "class-validator";
 
 @Entity()
 export class Usluga {
@@ -14,12 +15,18 @@ export class Usluga {
   uslugaId: number;
 
   @Column("int", { name: "kataloski_broj" })
+  @Validator.IsNotEmpty()
+  @Validator.IsNumber()
   kataloskiBroj: number;
 
   @Column("varchar", { name: "naziv_usluge", length: 64 })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
   nazivUsluge: string;
 
   @Column("varchar", { name: "opis", length: 255 })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
   opis: string;
 
   @Column("varchar", { name: "kategorija", length: 64 })

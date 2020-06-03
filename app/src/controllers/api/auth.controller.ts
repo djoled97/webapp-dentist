@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Req } from "@nestjs/common";
+import { Controller, Post, Body, Req, Put } from "@nestjs/common";
 import { KorisnikService } from "src/services/korisnik/korisnik.service";
 import { ApiResponse } from "src/misc/api.response.class";
 import * as crypto from 'crypto';
@@ -8,6 +8,8 @@ import { Request } from "express";
 import { jwtSecret } from "config/jwt.secret";
 import { LoginKorisnikDto } from "src/dtos/korisnik/login.korisnik.dto";
 import { LoginInfoKorisnikDto } from 'src/dtos/korisnik/login.info.korisnik.dto'
+import { AddKorisnikDto } from "src/dtos/korisnik/add.korisnik.dto";
+import { Korisnik } from "entities/korisnik.entity";
 
 @Controller('auth')
 export class AuthController {
@@ -93,5 +95,11 @@ export class AuthController {
            
                 return new Promise(resolve=>resolve(responseObject))
             }
-    }
+            @Put("register")
+            addUser(@Body() data: AddKorisnikDto): Promise<Korisnik | ApiResponse> {
+                return this.korisnikService.add(data);
+            }
+    
+    
+        }
 

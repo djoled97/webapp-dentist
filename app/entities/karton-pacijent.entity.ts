@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { Korisnik } from "./korisnik.entity";
 import { Pregled } from "./pregled.entity";
-
+import * as Validator from "class-validator";
 
 @Entity()
 export class KartonPacijent {
@@ -17,9 +17,15 @@ export class KartonPacijent {
   kartonPacijentId: number;
 
   @Column("varchar", { name: "ime", length: 64 })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
+  @Validator.Length(2, 42)
   ime: string;
 
   @Column("varchar", { name: "prezime", length: 64 })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
+  @Validator.Length(2, 42)
   prezime: string;
 
   @Column("varchar", { name: "datum_rodjenja", length: 255 })
