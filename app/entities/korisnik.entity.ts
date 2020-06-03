@@ -35,7 +35,7 @@ export class Korisnik {
   @Column("varchar", { name: "username", unique: true, length: 128 })
   @Validator.IsNotEmpty()
   @Validator.IsString()
-  @Validator.Matches(/^[a-zA-Z0-9]*$/) //One uppercase one lowercase and a number
+  @Validator.Matches(/^[a-z0-9]$/,{message:"One uppercase one lowercase and a number"}) //One uppercase one lowercase and a number
   @Validator.Length(4, 32)
   username: string;
 

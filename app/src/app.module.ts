@@ -18,6 +18,9 @@ import { UslugaController } from './controllers/api/usluga.controller';
 import { AuthService } from './auth/auth/auth.service';
 import { AuthController } from './controllers/api/auth.controller';
 import { AuthMiddleware } from './middlewares/auth.middleware';
+import { KategorijaService } from './services/kategorija/kategorija.service';
+import { Kategorija } from 'entities/kategorija.entity';
+import { KategorijaController } from './controllers/api/kategorija.controller';
 
 
 @Module({
@@ -29,14 +32,15 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
       username:Database.username,
       password:Database.password,
       database:Database.database,
-      entities:[Korisnik,Cena,KartonPacijent,Usluga,Pregled]
+      entities:[Korisnik,Cena,KartonPacijent,Usluga,Pregled,Kategorija]
     }),
     TypeOrmModule.forFeature([
       Korisnik,
       Cena,
       KartonPacijent,
       Usluga,
-      Pregled
+      Pregled,
+      Kategorija
     ])
   ],
   controllers: [
@@ -46,13 +50,15 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
     KartonPacijentController,
     UslugaController,
     AuthController,
+    KategorijaController
   ],
   providers: [
     KorisnikService,
     CenaService,
     KartonPacijentService,
     UslugaService,
-    AuthService
+    AuthService,
+    KategorijaService
   ],
   exports: [
     KorisnikService,

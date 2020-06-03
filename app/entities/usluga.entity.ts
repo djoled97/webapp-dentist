@@ -4,11 +4,16 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToOne,
+  Index,
 } from "typeorm";
 import { Cena } from "./cena.entity";
 import { Pregled } from "./pregled.entity";
-import  * as Validator from "class-validator";
+import * as Validator from "class-validator";
+import { Kategorija } from "./kategorija.entity";
 
+@Index("FK_usluga_kategorija", ["kategorijaId"], {})
 @Entity()
 export class Usluga {
   @PrimaryGeneratedColumn({ type: "int", name: "usluga_id" })
@@ -29,8 +34,15 @@ export class Usluga {
   @Validator.IsString()
   opis: string;
 
-  @Column("varchar", { name: "kategorija", length: 64 })
-  kategorija: string;
+  @Column("int", {name: "kategorija_id",unsigned: true, default: () => "'0'",})
+  kategorijaId: number;
+
+  @ManyToOne(() => Kategorija, (kategorija) => kategorija.uslugas, {
+    onDelete: "NO ACTION",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "kategorija_id", referencedColumnName: "kategorijaId" }])
+  kategorija: Kategorija;
 
   @OneToOne(() => Cena, (cena) => cena.usluga)
   cena: Cena;

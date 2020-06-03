@@ -1,5 +1,7 @@
 import * as Validator from "class-validator";
 import { UslugaCenaDto } from "./usluga.cena.dto";
+import { Validate, ValidateNested, IsDefined } from "class-validator";
+import { Type } from 'class-transformer';
 
 export class AddUslugaDto {
  
@@ -15,8 +17,14 @@ export class AddUslugaDto {
   @Validator.IsString()
   opis: string;
   
-  kategorija: string;
+  // kategorijaId:number;
   
+
   
+  @ValidateNested({always:true})
+  @Type(()=> UslugaCenaDto)
   cena: UslugaCenaDto;
+  kategorija:{
+    ime:string
+  }
 }
