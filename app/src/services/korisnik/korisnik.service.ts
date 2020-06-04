@@ -6,6 +6,7 @@ import { AddKorisnikDto } from 'src/dtos/korisnik/add.korisnik.dto';
 import { editKorsinikDto } from 'src/dtos/korisnik/edit.korisnik.dto';
 import { ApiResponse } from 'src/misc/api.response.class';
 import * as crypto from 'crypto';
+import { EditPromoteDto } from 'src/dtos/korisnik/edit.promote.dto';
 
 
 @Injectable()
@@ -74,7 +75,7 @@ export class KorisnikService {
         korisnik.email = data.email;
         korisnik.username = data.username;
         korisnik.passwordHash = passwordHashString;
-        korisnik.isAdmin=data.isAdmin;
+        korisnik.isAdmin=false;
        return new Promise((resolve)=>{
         this.korisnik.save(korisnik)
         .then(data => resolve(data))
@@ -110,5 +111,15 @@ export class KorisnikService {
         return this.korisnik.delete(id);
     }
 
+   async promoteToAdmin(id:number,data:EditPromoteDto):Promise<Korisnik|ApiResponse>{
+        let korisnik: Korisnik = await this.korisnik.findOne(id);
+        if(korisnik===undefined){
+            return new Promise((resolve)=>{
+                resolve(new ApiResponse("error",-1002));
+            })
+        }
+        korisnik.isAdmin=data.isAdmin;
 
+        return this.korisnik.save(korisnik);
+    }
 }

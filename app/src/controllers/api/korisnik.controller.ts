@@ -6,6 +6,7 @@ import { editKorsinikDto } from "src/dtos/korisnik/edit.korisnik.dto";
 import { ApiResponse } from "src/misc/api.response.class";
 import { AllowToRoles } from "src/misc/allow.to.roles.descriptor";
 import { RoleCheckerGuard } from "src/misc/role.checker.guard";
+import { EditPromoteDto } from "src/dtos/korisnik/edit.promote.dto";
 
 @Controller('api/korisnik')
 export class KorisnikController {
@@ -23,11 +24,11 @@ export class KorisnikController {
     @UseGuards(RoleCheckerGuard)
     @AllowToRoles('admin')
     getById(@Param('id') id: number): Promise<Korisnik | ApiResponse> {
-        
+
 
         return new Promise(async (resolve) => {
             let korisnik = await this.korisnikService.getById(id);
-            if(korisnik===undefined){
+            if (korisnik === undefined) {
                 resolve(new ApiResponse("error", 3001))
             }
             resolve(korisnik)
@@ -35,7 +36,12 @@ export class KorisnikController {
 
 
     }
-
+    @Put('promote/:id')
+    @UseGuards(RoleCheckerGuard)
+    @AllowToRoles('admin')
+    promoteToAdmin(@Param('id') id: number, @Body() data: EditPromoteDto) {
+        return this.korisnikService.promoteToAdmin(id, data);
+    }
 
     @Put()
     @UseGuards(RoleCheckerGuard)
@@ -48,8 +54,8 @@ export class KorisnikController {
 
         return this.korisnikService.editById(id, data);
     }
-   
-   
+
+
     // @Delete(':id')
     // deleteUser(@Param('id') id:number){
     //     return this.korisnikService.delete(id);
