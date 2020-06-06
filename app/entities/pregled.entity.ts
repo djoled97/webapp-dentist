@@ -22,7 +22,7 @@ export class Pregled {
   kartonPacijentId: number;
 
   @Column("varchar", { name: "datum", length: 255 })
-  datum: string;
+  datum: Date;
 
   @ManyToOne(() => Usluga, (usluga) => usluga.pregleds, {
     onDelete: "CASCADE",

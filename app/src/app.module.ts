@@ -21,6 +21,8 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
 import { KategorijaService } from './services/kategorija/kategorija.service';
 import { Kategorija } from 'entities/kategorija.entity';
 import { KategorijaController } from './controllers/api/kategorija.controller';
+import { PregledService } from './services/pregled/pregled.service';
+import { PregledController } from './controllers/api/pregled.controller';
 
 
 @Module({
@@ -50,7 +52,8 @@ import { KategorijaController } from './controllers/api/kategorija.controller';
     KartonPacijentController,
     UslugaController,
     AuthController,
-    KategorijaController
+    KategorijaController,
+    PregledController
   ],
   providers: [
     KorisnikService,
@@ -58,7 +61,8 @@ import { KategorijaController } from './controllers/api/kategorija.controller';
     KartonPacijentService,
     UslugaService,
     AuthService,
-    KategorijaService
+    KategorijaService,
+    PregledService
   ],
   exports: [
     KorisnikService,
