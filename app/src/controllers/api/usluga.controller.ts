@@ -6,6 +6,7 @@ import { KartonPacijent } from "entities/karton-pacijent.entity";
 import { UslugaService } from "src/services/usluga/usluga.service";
 import { Usluga } from "entities/usluga.entity";
 import { AddUslugaDto } from "src/dtos/usluga/add.usluga.dto";
+import { UslugaSerachDto } from "src/dtos/usluga/usluga.search.dto";
 
 @Controller('api/usluga')
 @Crud({
@@ -36,7 +37,12 @@ export class UslugaController {
     }
 
     @Post('createUsluga')
-    createFullUsluga(@Body()data:AddUslugaDto){
+    createFullUsluga(@Body() data: AddUslugaDto) {
         return this.service.createFullUsluga(data);
     }
+    @Post('search')
+    searchUsluga(@Body() data: UslugaSerachDto) {
+        return this.service.searchUsluga(data);
+    }
+
 }
