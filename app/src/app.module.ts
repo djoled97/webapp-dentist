@@ -23,6 +23,8 @@ import { Kategorija } from 'entities/kategorija.entity';
 import { KategorijaController } from './controllers/api/kategorija.controller';
 import { PregledService } from './services/pregled/pregled.service';
 import { PregledController } from './controllers/api/pregled.controller';
+import { KorisnikToken } from 'entities/korisnik-token.entity';
+import { RefreshTokenMethods } from './misc/refresh.token.methods';
 
 
 @Module({
@@ -34,7 +36,7 @@ import { PregledController } from './controllers/api/pregled.controller';
       username:Database.username,
       password:Database.password,
       database:Database.database,
-      entities:[Korisnik,Cena,KartonPacijent,Usluga,Pregled,Kategorija]
+      entities:[Korisnik,Cena,KartonPacijent,Usluga,Pregled,Kategorija,KorisnikToken,]
     }),
     TypeOrmModule.forFeature([
       Korisnik,
@@ -42,7 +44,8 @@ import { PregledController } from './controllers/api/pregled.controller';
       KartonPacijent,
       Usluga,
       Pregled,
-      Kategorija
+      Kategorija,
+      KorisnikToken,
     ])
   ],
   controllers: [
@@ -62,7 +65,8 @@ import { PregledController } from './controllers/api/pregled.controller';
     UslugaService,
     AuthService,
     KategorijaService,
-    PregledService
+    PregledService,
+    RefreshTokenMethods
   ],
   exports: [
     KorisnikService,

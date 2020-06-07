@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Korisnik } from 'entities/korisnik.entity';
 import { Repository, Connection, getConnection, getRepository } from 'typeorm';
@@ -7,12 +7,14 @@ import { editKorsinikDto } from 'src/dtos/korisnik/edit.korisnik.dto';
 import { ApiResponse } from 'src/misc/api.response.class';
 import * as crypto from 'crypto';
 import { EditPromoteDto } from 'src/dtos/korisnik/edit.promote.dto';
+import { KorisnikToken } from 'entities/korisnik-token.entity';
 
 
 @Injectable()
 export class KorisnikService {
     constructor(
-        @InjectRepository(Korisnik) private readonly korisnik: Repository<Korisnik>
+        @InjectRepository(Korisnik) private readonly korisnik: Repository<Korisnik>,
+        @InjectRepository(KorisnikToken) private readonly korisnikToken: Repository<KorisnikToken>
     ) { }
         findOne(user:string){
             
@@ -122,4 +124,49 @@ export class KorisnikService {
 
         return this.korisnik.save(korisnik);
     }
-}
+
+    async addToken(korisnikId: number, token: string, expiresAt: string) {
+        const korisnikToken = new KorisnikToken();
+        korisnikToken.korisnikId = korisnikId;
+        korisnikToken.token = token;
+        korisnikToken.expiresAt = expiresAt;
+
+        return await this.korisnikToken.save(korisnikToken);
+    }
+
+    async getKorisnikToken(token:string): Promise <KorisnikToken> {
+        return await this.korisnikToken.findOne({
+            token: token,
+        });
+    }
+
+    async invalidateToken(token:string): Promise <KorisnikToken | ApiResponse> {
+        const korisnikToken = await this.korisnikToken.findOne({
+            token: token,
+        });
+        
+        if (!korisnikToken) {
+            return new ApiResponse("error", -10001, "No such refresh token");
+        }
+
+        korisnikToken.isValid = 0;
+
+        await this.korisnikToken.save(korisnikToken);
+
+        return await this.getKorisnikToken(token);
+    }
+
+    async invalidateKorisnikTokens(korisnikId: number): Promise <KorisnikToken[] | ApiResponse[]> {
+        const korisnikTokens = await this.korisnikToken.find({
+            korisnikId: korisnikId,
+        });
+
+        const results = [];
+
+        for (const korisnikToken of korisnikTokens) {
+            results.push(this.invalidateToken(korisnikToken.token));
+        }
+
+        return results;
+    }
+ }
