@@ -7,6 +7,7 @@ import { Usluga } from "entities/usluga.entity";
 import { ApiResponse } from "src/misc/api.response.class";
 import { AddUslugaDto } from "src/dtos/usluga/add.usluga.dto";
 import { Kategorija } from "entities/kategorija.entity";
+import { UslugaSerachDto } from "src/dtos/usluga/usluga.search.dto";
 
 
 @Injectable()
@@ -51,4 +52,40 @@ export class UslugaService extends TypeOrmCrudService<Usluga>{
 
         })
     }
+  async  searchUsluga(data:UslugaSerachDto){
+
+        const builder = await this.usluga.createQueryBuilder("usluga").innerJoin("usluga.kategorija","kategorija");
+
+
+
+
+        if (data.keywords.trim().length > 0) {
+            builder.where("usluga.kataloski_broj LIKE :kw OR usluga.naziv_usluge LIKE :kw OR kategorija.ime LIKE :kw", { kw: "%" + data.keywords + "%" });
+            
+        }
+
+
+
+        const services: Usluga[] = await builder.getMany();
+
+        const result = await this.usluga.findByIds(services, {
+
+
+            relations: [
+                "kategorija",
+                "cena"
+            ]
+
+
+
+        })
+        //iz nekog razloga provera za null ne radi pa zato koristim length
+        if (services.length != 0) {
+            return result;
+        } else {
+            return new ApiResponse("error", -3001, "Service not found");
+        }
+
+    }
+
 }
