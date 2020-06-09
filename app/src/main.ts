@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { CrudConfigService } from '@nestjsx/crud';
+
 // CrudConfigService.load(
 // {
 
@@ -27,7 +28,7 @@ async function bootstrap() {
   // });
   // app.use("/api/",apiLimiter)
   app.useGlobalPipes(new ValidationPipe());
-  
+  app.enableCors()
   await app.listen(3000);
 }
 bootstrap();

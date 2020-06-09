@@ -22,8 +22,9 @@ export class AuthController {
     @Post('admin/login')
     async  doAdminLogin(@Body() data: LoginKorisnikDto, @Req() req: Request): Promise<ApiResponse | LoginInfoKorisnikDto> {
         const korisnik = await this.korisnikService.getByUsername(data.username);
-
-        if (!korisnik) {
+        
+            
+        if (!korisnik  || !korisnik.isAdmin ) {
             return new Promise(resolve =>
                 resolve(new ApiResponse('error', -3001))
             )
@@ -136,7 +137,7 @@ export class AuthController {
     async  doUserLogin(@Body() data: LoginKorisnikDto, @Req() req: Request): Promise<ApiResponse | LoginInfoKorisnikDto> {
         const korisnik = await this.korisnikService.getByUsername(data.username);
 
-        if (!korisnik) {
+        if (!korisnik || korisnik.isAdmin) {
             return new Promise(resolve =>
                 resolve(new ApiResponse('error', -3001))
             )
