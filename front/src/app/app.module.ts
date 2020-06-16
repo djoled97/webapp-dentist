@@ -9,6 +9,9 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { UserService } from './service/user.service';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthGuardService } from './service/auth.guard.service';
+import { JwtModule } from "@auth0/angular-jwt";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +23,19 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: ()=>{
+          return localStorage.getItem("reftoken");
+        },
+        whitelistedDomains: ["localhost:3001"],
+        blacklistedRoutes: [],
+      },
+    })
   ],
-  providers: [UserService],
+  providers: [UserService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,8 +13,9 @@
         <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('password').getError('incorrect')">Incorrect password</div>
       </div>
 
-      <input type="submit" value="Submit" class="btn btn-primary" />
-
+      
+      <input type="submit" value="Submit" class="btn btn-primary " [ngClass]="{'shake-horizontal' : loginForm.invalid }" />
     </form>
   </div>
 </div>
+

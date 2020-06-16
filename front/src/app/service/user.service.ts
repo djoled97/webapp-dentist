@@ -3,7 +3,7 @@ import { UserLogin } from '../models/UserLogin';
 import { HttpClient, HttpHeaders, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,11 +17,12 @@ const httpOptions = {
 })
 
 export class UserService {
- 
+  isLoggedIn:boolean=false;
   
     logout(){
       localStorage.clear();
       this.router.navigate(['login']);
+      this.isLoggedIn=false;
     }
 
   login(user:UserLogin){
@@ -33,6 +34,7 @@ export class UserService {
           console.log(res)
         localStorage.setItem('token',res.token);
         localStorage.setItem('reftoken',res.refreshToken)
+        this.isLoggedIn=true;
         }
        if(localStorage.getItem('reftoken')){
         this.router.navigate(['../home']);
@@ -42,6 +44,10 @@ export class UserService {
     
     
   }
-
-  constructor(private  http:HttpClient,private router:Router) { }
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('reftoken');
+    
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+  constructor(private  http:HttpClient,private router:Router,private jwtHelper:JwtHelperService) { }
 }

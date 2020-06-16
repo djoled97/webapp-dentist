@@ -31,7 +31,4 @@ export class AddKorisnikDto {
     passwordHash: string;
 
 
-    @Validator.IsNotEmpty()
-    @Validator.IsBoolean()
-    isAdmin?: boolean;
 }

@@ -1,6 +1,6 @@
+<!-- 
 
-
-
+<div class="font">
 <div id="mySidenav" class="sidenav">
   <a href="javascript:;" class="closebtn" (click)="closeNav()">&times;</a>
   <a href="#">About</a>
@@ -26,16 +26,16 @@
     
 
 </div>
+</div> -->
 
-<!-- <script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "190px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-
-</script>
-   -->
  
+
+<div  class="sidenav">
+  <p class="color text-center">Welcome back {{username}}</p>
+  
+  <a href="#" ><i class="fa fa-home "><span class="moveright">Home</span></i></a>
+  <a href="#"><i class="fa fa-home "><span class="moveright">Services</span></i></a>
+  <a href="#"><i class="fa fa-home "><span class="moveright">Interventions</span></i></a>
+  <a href="#"><i class="fa fa-users "><span class="moveright">Patients</span></i></a>
+  <a  (click)="logout()"><i class="fa fa-power-off" ><span class="moveright">Logout</span></i></a>
+</div>

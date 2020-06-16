@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,23 +8,24 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  
-  constructor(private userService:UserService) { 
-    
+  decodedToken:string;
+    username:string
+  constructor(private userService: UserService) {
+    const myRawToken = localStorage.getItem('token');
+    const helper = new JwtHelperService();
+
+     const token = helper.decodeToken(myRawToken);
+    this.decodedToken=token;
+    this.username=token.username;
+
   }
 
   ngOnInit(): void {
   }
 
-openNav(){
-  document.getElementById("mySidenav").style.width = "190px";
   
-}
-closeNav(){
-  document.getElementById("mySidenav").style.width = "0";
-}
 
-  logout(){
+  logout() {
     this.userService.logout();
   }
 }
