@@ -28,7 +28,7 @@ async function bootstrap() {
   // });
   // app.use("/api/",apiLimiter)
   app.useGlobalPipes(new ValidationPipe());
-  app.enableCors()
+  app.enableCors()  
   await app.listen(3000);
 }
 bootstrap();

@@ -18,7 +18,7 @@ export class AddKorisnikDto {
 
     @Validator.IsNotEmpty()
     @Validator.IsString()
-    @Validator.Matches(/^[a-z0-9]{5,}$/, {
+    @Validator.Matches(/^[A-z0-9]{5,}$/, {
         message: "Username must be longer than 5 characters and only contain alphanumeric characters"
     }) // alphanumeric values
 

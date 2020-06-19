@@ -13,6 +13,12 @@ export class KorisnikController {
 
     constructor(private korisnikService: KorisnikService) { }
 
+    @Get('name')
+    @UseGuards(RoleCheckerGuard)
+    @AllowToRoles('admin',"user")
+    getName():Promise<Korisnik[]>{
+        return this.korisnikService.getName();
+    }
 
     @Get()
     @UseGuards(RoleCheckerGuard)

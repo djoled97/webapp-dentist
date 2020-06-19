@@ -1,0 +1,72 @@
+<div class="back">
+<div class="text-center centerVandH slide-in-left">
+  <div class="slide-bottom">
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+      <div class="form-group ">
+        <label class="labelcolor">Name:</label>
+        <input type="text" class="form-control text-center " formControlName="ime" placeholder="Enter  name" 
+        [ngClass]="{'is-invalid':patientForm.get('ime').touched && patientForm.get('ime').invalid, '
+        is-valid':patientForm.get('ime').valid  }" required>
+        <div *ngIf="patientForm.get('ime').touched && patientForm.get('ime').invalid"  class="invalid-feedback">
+          <div *ngIf="patientForm.get('ime').errors.required ">Name is required</div>
+          <div *ngIf="patientForm.get('ime').errors.minlength">Name must be atleast 2 characters long   </div>
+     
+        </div>
+
+      </div>
+        <!-- <div class="alert alert-danger " role="alert" *ngIf="(patientForm.get('ime').errors.invalid && patientForm.get('ime').touched ) || patientForm.get('ime').errors.minlength">Username
+          doesn't exist</div>
+       -->
+      
+      <div class="form-group ">
+        <label class="labelcolor">Last name:</label>
+        <input type="text" class="form-control text-center " formControlName="prezime" placeholder="Enter  last name"
+        [ngClass]="{'is-invalid':patientForm.get('prezime').touched && patientForm.get('prezime').invalid, '
+        is-valid':patientForm.get('prezime').valid  }" required>
+        <div  *ngIf="patientForm.get('prezime').touched && patientForm.get('prezime').invalid" class="invalid-feedback">
+          <div *ngIf="patientForm.get('prezime').errors.required ">Last name is required</div>
+          <div *ngIf="patientForm.get('prezime').errors.minlength">Last name  must be atleast 2 characters long   </div>
+     
+        </div>
+
+
+      </div>
+      <div class="form-group  ">
+        <label class="labelcolor">Date of birth:</label> <br>
+        <!-- <input type="date" class="form-control text-center " formControlName="birthdate" placeholder="Enter  username"> -->
+
+
+        <input matInput class="text-center ml-5" [matDatepicker]="picker" formControlName="datumRodjenja">
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_up</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+      </div>
+      <div class="form-group">
+        <!-- <select name="dentists" >
+            <option *ngFor="let k of Korisnik" [value]="k.id">{{k.ime}}</option>
+            
+          </select> -->
+        <label class="labelcolor">Choose dentist:</label> <br>
+        <mat-form-field class="ml-4" >
+          <mat-label>Name and Last name</mat-label>
+          <mat-select class="text-center" formControlName="korisnikId" required>
+            <mat-option>--</mat-option>
+            <mat-option  class="not-empty-select.mat-selected" *ngFor="let k of korisnik" [value]="k.korisnikId">
+              {{k.ime}} {{k.prezime}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+          <mat-error *ngIf="patientForm.get('korisnikId').hasError('required')"></mat-error>
+        
+      </div>
+
+      <div class="submit">
+      <button  type="submit" [disabled]="!patientForm.valid"  class="btn btn-primary " ><mat-icon>check_box</mat-icon></button>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+<app-nav-bar></app-nav-bar>

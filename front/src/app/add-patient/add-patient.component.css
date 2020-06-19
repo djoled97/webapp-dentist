@@ -1,0 +1,54 @@
+.centerVandH{
+    position: absolute;
+
+    width: 280px;
+    height: 300px;
+
+    /* Center form on page horizontally & vertically */
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
+}
+
+@keyframes slide-in-left {
+    0% {
+      transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .slide-in-left {
+	animation: slide-in-left 0.9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.back{
+ 
+    background-image:url('../../assets//images/2.jpg');
+  
+    height: 100vh;
+    
+    background-size:cover; width:auto;
+      
+      background-position:50% 50%;
+      
+    }
+  .labelcolor{
+    
+    font-size: 22px;  
+    color: white;
+     
+    }
+    form{
+        background: rgba(8, 5, 5, 0.7);
+        
+    }
+    /deep/ .mat-select-value{
+        color:white;
+     }
+     /deep/ .mat-form-field-type-mat-select .mat-form-field-label, .mat-select-value{
+         color: white;
+     }
+   
