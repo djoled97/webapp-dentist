@@ -26,13 +26,6 @@ export class KorisnikService {
 
         return this.korisnik.find();
     }
-
-    getName():Promise<Korisnik[]>{
-        return this.korisnik.find({
-            select:["korisnikId","ime","prezime",]
-        })
-    }
-
    async getByRole(id:number,role:string):Promise<Korisnik>{
     let builder;
     if(role==="admin"){  
@@ -49,6 +42,14 @@ export class KorisnikService {
         return builder.getOne();
         
     }
+
+    getName():Promise<Korisnik[]>{
+        return this.korisnik.find({
+            select:["korisnikId","ime","prezime",]
+        })
+    }
+
+
     getById(id: number): Promise<Korisnik> {
         
         return  this.korisnik.findOne(id); // Ovde si stavio da se trazi po argumentu username:string, a treba po id:number !
@@ -72,8 +73,20 @@ export class KorisnikService {
         return null;
     }
 
+    async getByEmail(emailString: string): Promise <Korisnik | null> {
+        const korisnik = await this.korisnik.findOne({
+            email: emailString
+        });
+
+        if(korisnik) {
+            return korisnik;
+        }
+
+        return null;
+    }
+
     add(data: AddKorisnikDto): Promise<Korisnik|ApiResponse> {
-        
+
         const passwordHash = crypto.createHash('sha512');
         passwordHash.update(data.passwordHash);
         const passwordHashString = passwordHash.digest('hex').toUpperCase();

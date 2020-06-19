@@ -248,7 +248,17 @@ export class AuthController {
     }
 
     @Put("register")
-    addUser(@Body() data: AddKorisnikDto): Promise<Korisnik | ApiResponse> {
+    async addUser(@Body() data: AddKorisnikDto): Promise<Korisnik | ApiResponse> {
+        let korisnik = await this.korisnikService.getByEmail(data.email);
+        if (korisnik) {
+            return new ApiResponse('error', -7000, 'The email is already in use');
+        }
+
+        korisnik = await this.korisnikService.getByUsername(data.username);
+        if(korisnik) {
+            return new ApiResponse('error', -7001, 'The username is taken');
+        }
+
         return this.korisnikService.add(data);
     }
 

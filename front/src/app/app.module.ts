@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
     HomeComponent,
     NavBarComponent,
     AddPatientComponent,
-    
+    RegisterComponent
     
   ],
   imports: [
