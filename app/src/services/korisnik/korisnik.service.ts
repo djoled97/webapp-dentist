@@ -26,6 +26,13 @@ export class KorisnikService {
 
         return this.korisnik.find();
     }
+
+    getName():Promise<Korisnik[]>{
+        return this.korisnik.find({
+            select:["korisnikId","ime","prezime",]
+        })
+    }
+
    async getByRole(id:number,role:string):Promise<Korisnik>{
     let builder;
     if(role==="admin"){  
@@ -66,7 +73,7 @@ export class KorisnikService {
     }
 
     add(data: AddKorisnikDto): Promise<Korisnik|ApiResponse> {
-
+        
         const passwordHash = crypto.createHash('sha512');
         passwordHash.update(data.passwordHash);
         const passwordHashString = passwordHash.digest('hex').toUpperCase();

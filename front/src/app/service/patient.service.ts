@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Patient } from '../models/Patient';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json' ,
     'Authorization':'Bearer '+ localStorage.getItem('token')
   })
 };
-const baseUrl="http://localhost:3000/api/korisnik"
+const baseUrl="http://localhost:3000/api/karton"
 @Injectable({
   providedIn: 'root'
 })
+export class PatientService {
+constructor(private http: HttpClient) { }
 
-export class UserService {
 
-  constructor(private http:HttpClient) { }
-
-  getKorisnikName(){
-  return  this.http.get<any>(baseUrl+ "/name",httpOptions);
-  }
+addPatient(patient:Patient){
+  return this.http.post<any>(baseUrl,patient,httpOptions);
+}
 
 
 }

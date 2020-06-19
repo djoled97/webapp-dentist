@@ -33,9 +33,9 @@
 <div  class="sidenav">
   <p class="color text-center">Welcome back {{username}}</p>
   
-  <a href="#" ><i class="fa fa-home "><span class="moveright">Home</span></i></a>
-  <a href="#"><i class="fa fa-home "><span class="moveright">Services</span></i></a>
-  <a href="#"><i class="fa fa-home "><span class="moveright">Interventions</span></i></a>
+  <a  [routerLink]="['/home']"><i class="fa fa-home "><span class="moveright">Home</span></i></a>
+  <a href="#"><mat-icon >medical_services<span class="moveright">Services</span></mat-icon></a>
+  <a href="#"><mat-icon >healing<span class="moveright">Interventions</span></mat-icon></a>
   <a href="#"><i class="fa fa-users "><span class="moveright">Patients</span></i></a>
   <a  (click)="logout()"><i class="fa fa-power-off" ><span class="moveright">Logout</span></i></a>
 </div>
