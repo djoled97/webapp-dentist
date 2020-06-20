@@ -62,10 +62,14 @@ export class KorisnikService {
     }
 
     async getByUsername (usernameString: string): Promise <Korisnik | null> {
-        const korisnik = await this.korisnik.findOne({
-            username: usernameString
-        });
+        // const korisnik = await this.korisnik.findOne({
+        //     username: usernameString
+        // });
+        const builder=await this.korisnik.createQueryBuilder("korisnik");
 
+        builder.where(" BINARY username = BINARY :value;",{value:usernameString});
+
+        const korisnik=await builder.getOne();
         if (korisnik) {
             return korisnik
         }
