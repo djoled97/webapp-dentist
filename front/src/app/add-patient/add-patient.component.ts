@@ -34,8 +34,8 @@ export class AddPatientComponent implements OnInit {
    }
  
   ngOnInit(): void {
-    // this.loginService.refreshUserToken().subscribe();
-   
+    
+  
   }
   onSubmit() {
   return  this.patientSerivce.addPatient(this.patientForm.value).subscribe();

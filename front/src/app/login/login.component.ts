@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
   
   
   loginForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]]
 
 
 
@@ -33,10 +33,19 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-  
+
   }
  async onSubmit() {
    await this.loginService.login(this.loginForm.value).subscribe(data => {
+       
+
+      if(data.statusCode===-10001){
+        const username = this.loginForm.get('username');
+        const pass = this.loginForm.get('password');
+        
+        username.setErrors({ 'empty': true });
+        pass.setErrors({ 'empty': true });
+      }
 
       if (data.statusCode === -3002) {
         const pass = this.loginForm.get('password');

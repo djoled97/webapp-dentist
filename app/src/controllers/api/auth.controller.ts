@@ -1,10 +1,10 @@
-import { Controller, Post, Body, Req, Put, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
+import { Controller, Post, Body, Req, Put, HttpStatus, HttpException, UseGuards, Res } from "@nestjs/common";
 import { KorisnikService } from "src/services/korisnik/korisnik.service";
 import { ApiResponse } from "src/misc/api.response.class";
 import * as crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
 import { JwtDataDto } from "src/dtos/auth/jwt.data.dto";
-import { Request } from "express";
+import { Request, Response } from "express";
 import { jwtSecret } from "config/jwt.secret";
 import { LoginKorisnikDto } from "src/dtos/korisnik/login.korisnik.dto";
 import { LoginInfoKorisnikDto } from 'src/dtos/korisnik/login.info.korisnik.dto'
@@ -14,6 +14,7 @@ import { JwtRefreshDataDto } from "src/dtos/auth/jwt.refresh.dto";
 import { RefreshTokenMethods } from "src/misc/refresh.token.methods"
 import { KorisnikRefreshTokenDto } from "src/dtos/auth/korisnik.refresh.token";
 import { AllowToRoles } from "src/misc/allow.to.roles.descriptor";
+import * as Validator from "class-validator";
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +23,7 @@ export class AuthController {
     @Post('admin/login')
     async  doAdminLogin(@Body() data: LoginKorisnikDto, @Req() req: Request): Promise<ApiResponse | LoginInfoKorisnikDto> {
         const korisnik = await this.korisnikService.getByUsername(data.username);
-        
+           
             
         if (!korisnik  || !korisnik.isAdmin ) {
             return new Promise(resolve =>
@@ -134,9 +135,15 @@ export class AuthController {
     }
 
     @Post('user/login')
-    async  doUserLogin(@Body() data: LoginKorisnikDto, @Req() req: Request): Promise<ApiResponse | LoginInfoKorisnikDto> {
+    async  doUserLogin(@Body() data: LoginKorisnikDto, @Req() req: Request ): Promise<ApiResponse | LoginInfoKorisnikDto> {
         const korisnik = await this.korisnikService.getByUsername(data.username);
-
+          
+          if(data.password.length===0 || data.username.length===0){
+            return new Promise(resolve =>
+                resolve(new ApiResponse('error', -10001))
+            ) 
+          }
+          
         if (!korisnik || korisnik.isAdmin) {
             return new Promise(resolve =>
                 resolve(new ApiResponse('error', -3001))

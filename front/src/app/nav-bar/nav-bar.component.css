@@ -174,3 +174,9 @@
 .color{
   color: #818181;
 }
+.pointer{
+  cursor: pointer;
+}
+.active{
+  color: white;
+}

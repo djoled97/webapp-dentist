@@ -36,8 +36,10 @@ export class LoginService {
         localStorage.setItem('reftoken',res.refreshToken);
         
         }
-       if(localStorage.getItem('reftoken')){
-        this.router.navigate(['../home']);
+       if(localStorage.getItem('token')){
+        this.router.navigate(['../home']).then(() => {
+          window.location.reload();
+        })
        }
       })
     );
@@ -47,14 +49,16 @@ export class LoginService {
   refreshUserToken() :Observable<any>{
     return this.http.post<any>("http://localhost:3000/auth/user/refresh",{token:localStorage.getItem('reftoken')},httpOptions).pipe(
       tap(res=>{
-          localStorage.setItem('token',res.token);
+         
+        localStorage.setItem('token',res.token);
           localStorage.setItem('reftoken',res.refreshToken);
+          
       })
     )
   };
 
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem('reftoken');
+    const token = localStorage.getItem('token');
     
     return !this.jwtHelper.isTokenExpired(token);
   }

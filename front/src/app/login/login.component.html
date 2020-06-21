@@ -3,18 +3,19 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group ">
         <label>Username:</label>
-        <input type="text" class="form-control text-center " formControlName="username" placeholder="Enter  username">
+        <input type="text" class="form-control text-center " formControlName="username" placeholder="Enter  username" required>
         <div class="alert alert-danger " role="alert" *ngIf="loginForm.get('username').getError('incorrect')">Username doesn't exist</div>
       </div>
       <div class="form-group">
         <label>Password:</label>
         <input type="password" class="form-control text-center" formControlName="password"
-          placeholder="Enter  password">
+          placeholder="Enter  password" required>
         <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('password').getError('incorrect')">Incorrect password</div>
       </div>
 
-      
-      <input type="submit" value="Submit" class="btn btn-primary " [ngClass]="{'shake-horizontal' : loginForm.invalid }" />
+
+      <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('password').getError('empty') && loginForm.get('username').getError('empty')  ">All fields are required</div>
+      <input type="submit" value="Submit" class="btn btn-primary " [ngClass]="{'shake-horizontal' : loginForm.errors ||loginForm.invalid }" />
     </form>
   </div>
 </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginService } from '../service/login.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap, tap } from 'rxjs/operators';
 
 
 
@@ -11,21 +13,21 @@ import { LoginService } from '../service/login.service';
 })
 
 export class HomeComponent implements OnInit {
-    decodedToken:string;
-    username:string
-  constructor(private loginService:LoginService) {
-    this.loginService.refreshUserToken().subscribe();
-    const myRawToken = localStorage.getItem('token');
-    const helper = new JwtHelperService();
-
-     const token = helper.decodeToken(myRawToken);
-    this.decodedToken=token;
-    this.username=token.username;
+  
+    
+  constructor() {
+    
+    
 
 
   }
+  
 
   ngOnInit() {
+   
+     
+    
+    
   }
 
 }
