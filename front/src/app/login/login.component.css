@@ -1,12 +1,11 @@
 .inputwidth{
-    width: 50%;
+    width: 300px;
     
 }
 .login_div {
     position: absolute;
 
-    width: 300px;
-    height: 300px;
+    
 
     /* Center form on page horizontally & vertically */
     top: 50%;
@@ -30,3 +29,16 @@
 @keyframes shake-horizontal{0%,100%{transform:translateX(0)}10%,30%,50%,70%{transform:translateX(-10px)}20%,40%,60%{transform:translateX(10px)}80%{transform:translateX(8px)}90%{transform:translateX(-8px)}}  
 
 .shake-horizontal:focus{animation:shake-horizontal .5s cubic-bezier(.455,.03,.515,.955) both}
+
+.btn-secondary{
+    color:#818181;
+}
+.black{
+    color:black;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }

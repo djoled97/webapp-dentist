@@ -42,7 +42,7 @@ export class NavBarComponent implements OnInit {
 
 
 
-    // console.log(this.expDate * 1000)
+     console.log(new Date(this.expDate * 1000))
 
 
 
@@ -54,6 +54,7 @@ export class NavBarComponent implements OnInit {
 
     if (this.expDate * 1000 < this.now) {
       if (this.dialog.openDialogs.length == 0) {
+        localStorage.clear();
         this.dialog.open(LogoutDialogComponent, { disableClose: true });
       }
     }
