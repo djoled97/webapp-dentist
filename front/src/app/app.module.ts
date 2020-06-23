@@ -19,11 +19,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { RegisterComponent } from './register/register.component';
 
 import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSelectModule,
     MatDialogModule,
     MatButtonModule,
-
+    MatFormFieldModule,
+    MatInputModule,
     
     AppRoutingModule,
     BrowserModule,

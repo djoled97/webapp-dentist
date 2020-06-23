@@ -20,7 +20,8 @@ import {
 })
 export class LoginComponent implements OnInit {
   
-  
+
+  hidden:boolean=true;
   loginForm = this.fb.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required]]
@@ -62,10 +63,10 @@ export class LoginComponent implements OnInit {
       
 
     }
-
+    
 
     );
     
   }
-
+  
 }
