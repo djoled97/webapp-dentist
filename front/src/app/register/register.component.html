@@ -1,37 +1,133 @@
 <div class="text-center register_div ">
-    <div class="slide-bottom">
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
-        <div class="form-group ">
-          <label>Name:</label>
-          <input type="text" class="form-control text-center " formControlName="ime" placeholder="Enter your name">
-         
-        </div>
-        <div class="form-group">
-          <label>Last name:</label>
-          <input type="text" class="form-control text-center" formControlName="prezime" placeholder="Enter your last name">
-         
-        </div>
-        
-        <div class="form-group">
-            <label>Email:</label>
-            <input type="text" class="form-control text-center" formControlName="email" placeholder="email">
-            
-          </div>
+  <div class="slide-bottom">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-          <div class="form-group">
-            <label>Username:</label>
-            <input type="text" class="form-control text-center" formControlName="username" placeholder="username">
-           
-          </div>
+      <!--First name-->
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control text-center" formControlName="ime" placeholder="Enter your name"
+          [ngClass]="{'is-invalid': submitted || registerForm.get('ime').touched && registerForm.get('ime').invalid, '
+           is-valid':registerForm.get('ime').valid }" required>
 
-          <div class="form-group">
-            <label>Password:</label>
-            <input type="password" class="form-control text-center" formControlName="passwordHash" placeholder="Enter your password">
-           
+        <div *ngIf="registerForm.get('ime').touched && registerForm.get('ime').invalid"
+          class="invalid-feedback">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="registerForm.get('ime').touched && registerForm.get('ime').errors.required">
+            Name is required</div>
+          <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('ime').errors.minlength">
+            Name should be 2 or more characters
           </div>
-  
-        
-        <input type="submit" value="Submit" class="btn btn-primary "/>
-      </form>
-    </div>
+          <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('ime').errors.pattern">
+            Name must start with an uppercase letter
+          </div>
+        </div>
+      </div>
+      <!---->
+
+      <!--Last name-->
+      <div class="form-group">
+        <label>Last name:</label>
+        <input type="text" class="form-control text-center" formControlName="prezime" placeholder="Enter your last name"
+          [ngClass]="{'is-invalid': submitted || registerForm.get('prezime').touched && registerForm.get('prezime').invalid, '
+           is-valid':registerForm.get('prezime').valid }" required>
+
+        <div *ngIf="registerForm.get('prezime').touched && registerForm.get('prezime').invalid"
+          class="invalid-feedback">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="registerForm.get('prezime').touched && registerForm.get('prezime').errors.required">
+            Last name is required</div>
+          <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('prezime').errors.minlength">
+            Last name should be 2 or more characters</div>
+          <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('prezime').errors.pattern">
+            Last name must start with an uppercase letter</div>
+        </div>
+      </div>
+      <!---->
+
+      <!--Email-->
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" class="form-control text-center" formControlName="email" placeholder="Enter your email"
+        [ngClass]="{'is-invalid': submitted || registerForm.get('email').touched && registerForm.get('email').invalid, '
+           is-valid':registerForm.get('email').valid }" required>
+
+        <div *ngIf="registerForm.get('email').touched && registerForm.get('email').invalid"
+        class="invalid-feedback">
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('email').touched && registerForm.get('email').errors.required">
+          Email is required</div>
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('email').touched && registerForm.get('email').errors.pattern">
+          Email is invalid</div>
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('email').touched && registerForm.get('email').getError('notUnique')">
+          Email is already in use</div>
+        </div>
+      </div>
+      <!---->
+
+      <!--Username-->
+      <div class="form-group">
+        <label>Username:</label>
+        <input type="text" class="form-control text-center" formControlName="username" placeholder="Enter your username"
+        [ngClass]="{'is-invalid': submitted || registerForm.get('username').touched && registerForm.get('username').invalid, '
+           is-valid':registerForm.get('username').valid }" required>
+
+        <div *ngIf="registerForm.get('username').touched && registerForm.get('username').invalid"
+        class="invalid-feedback">
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('username').touched && registerForm.get('username').errors.required">
+          Username is required</div>
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('username').touched && registerForm.get('username').errors.pattern">
+          Username must be longer than 5 characters and only contain alphanumeric characters</div>
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('username').touched && registerForm.get('username').getError('notUnique')">
+          Username is already in use</div>
+        </div>
+      </div>
+      <!---->
+
+      <!--Password-->
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control text-center" formControlName="passwordHash" placeholder="Enter your password"
+        [ngClass]="{'is-invalid': submitted || registerForm.get('passwordHash').touched && registerForm.get('passwordHash').invalid, '
+           is-valid':registerForm.get('passwordHash').valid }" required>
+
+        <div *ngIf="registerForm.get('passwordHash').touched && registerForm.get('passwordHash').invalid"
+        class="invalid-feedback">
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('passwordHash').touched && registerForm.get('passwordHash').errors.required">
+          Password is required</div>
+          <div class="alert alert-danger" role="alert"
+          *ngIf="registerForm.get('passwordHash').touched && registerForm.get('passwordHash').errors.pattern">
+          Password must be longer than 6 characters and contain at least one number and an uppercase character</div>
+        </div>
+      </div>
+      <!---->
+
+      <!--Confirm password-->
+      <div class="form-group">
+        <label>Confirm password:</label>
+        <input type="password" class="form-control text-center" formControlName="confirmPassword" placeholder="Confirm your password"
+          [ngClass]="{'is-invalid': submitted || registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').invalid, '
+           is-valid':registerForm.get('confirmPassword').valid }" required>
+
+        <div *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').invalid"
+          class="invalid-feedback">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').errors.required">
+            This field is required</div>
+          <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('confirmPassword').getError('confirmedValidator')">
+            Passwords must match
+          </div>
+        </div>
+      </div>
+      <!---->
+
+      <input id="submit-button" type="submit" value="Submit" class="btn btn-primary " />
+      <input id="reset-button" type="reset" value="Reset" class="btn btn-secondary " />
+    </form>
   </div>
+</div>
