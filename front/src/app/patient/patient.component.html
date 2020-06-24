@@ -1,0 +1,62 @@
+
+
+
+
+
+
+<div class="pt-5">
+    <mat-accordion *ngFor="let p of patients">
+        <mat-expansion-panel class="panel1">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{p.ime}} {{p.prezime}}
+                </mat-panel-title>
+               
+            </mat-expansion-panel-header>
+
+            <label>Date of birth: </label>
+            <p> {{p.datumRodjenja|date:'dd.MM.y.'}}</p>
+           
+            <label>Dentist: </label>
+            <p> {{p.korisnik.ime}} {{p.korisnik.prezime}}</p>
+            <hr>
+            <div class="text-center">
+                <button class="btn color mb-3 " (click)="openDialog(p)">Edit </button>
+            </div>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Services</mat-panel-title>
+                    <mat-panel-description>
+                        Details about given services
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let pr of p['pregleds']">
+                    <label>Date of examination:</label>
+                    <p> {{pr.datum|date:'dd.MM.y. HH:mm'}}</p>
+
+
+                    <label>Name of service: </label>
+                    <p> {{pr.usluga.nazivUsluge}}</p>
+
+                    <label>Description: </label>
+                    <p> {{pr.usluga.opis}}</p>
+                    <label>Category: </label>
+                    <p> {{pr.usluga.kategorija.ime}}</p>
+                    <hr>
+               
+                </div>
+          
+            </mat-expansion-panel>
+          
+
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            
+        </mat-expansion-panel>
+       
+    </mat-accordion>
+
+</div>
+
+
+<app-nav-bar></app-nav-bar>

@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService as AuthGuard } from './service/auth.guard.service';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { RegisterComponent } from './register/register.component';
+import { PatientComponent } from './patient/patient.component';
 
 
 
@@ -20,6 +21,9 @@ const routes: Routes = [{
     {
       path:'add',
       component:AddPatientComponent
+    }, {
+      path:'view',
+      component:PatientComponent
     }
     
 

@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, Get } from "@nestjs/common";
 import { Crud } from "@nestjsx/crud";
 
 import { KartonPacijentService } from "src/services/karton/karton-pacijent.service";
@@ -22,8 +22,10 @@ import { PatientSearchDto } from "src/dtos/pacijent/patient.search.dto";
     query:{
         join:{
           korisnik:{
-              eager:true
-          }
+            
+            eager:true
+            
+            }
         }
     }
 })
@@ -35,6 +37,10 @@ export class KartonPacijentController{
 @Post('search')
 async search(@Body() data:PatientSearchDto){
     return await this.service.search(data);
+}
+@Get()
+getPatients(){
+    return  this.service.getPatients();
 }
 
 }

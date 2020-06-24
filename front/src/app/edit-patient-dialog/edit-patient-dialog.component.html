@@ -1,0 +1,12 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name:</label>
+    <input type="text" class="form-control" formControlName="ime" placeholder="Enter Name">
+ 
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Last name:</label>
+    <input type="text" class="form-control"  formControlName="prezime" placeholder="Enter Last name">
+  </div>
+  <button mat-dialog-close type="submit" class="btn btn-primary">Submit</button>
+</form>

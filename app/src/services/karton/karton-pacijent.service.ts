@@ -1,12 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
-import { Repository } from "typeorm";
+import { Repository, getConnection } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { KartonPacijent } from "entities/karton-pacijent.entity";
 import { PatientSearchDto } from "src/dtos/pacijent/patient.search.dto";
 import { Korisnik } from "entities/korisnik.entity";
 import { Validate } from "class-validator";
 import { ApiResponse } from "src/misc/api.response.class";
+import { Usluga } from "entities/usluga.entity";
 @Injectable()
 export class KartonPacijentService extends TypeOrmCrudService<KartonPacijent>{
 
@@ -51,8 +52,26 @@ export class KartonPacijentService extends TypeOrmCrudService<KartonPacijent>{
 
     }
 
+    async getPatients():Promise<KartonPacijent[] | ApiResponse> {
+   
+      return      this.karton.find({
+                relations:[
+                    "korisnik",
+                    "pregleds",
+                    "pregleds.usluga",
+                    "pregleds.usluga.kategorija"
+                ]
+            })
+
+        
+        
+        
+
+  
+    }
+    
+    }
 
 
-}
 
 

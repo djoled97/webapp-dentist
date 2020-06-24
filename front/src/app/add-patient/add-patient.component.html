@@ -35,13 +35,13 @@
         <label class="labelcolor">Date of birth:</label> <br>
         <!-- <input type="date" class="form-control text-center " formControlName="birthdate" placeholder="Enter  username"> -->
 
-
-        <input matInput class="text-center ml-5" [matDatepicker]="picker" formControlName="datumRodjenja">
+        <mat-form-field >
+        <input matInput class="text-center " [matDatepicker]="picker" formControlName="datumRodjenja">
         <mat-datepicker-toggle matSuffix [for]="picker">
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_up</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-
+        </mat-form-field>
       </div>
       <div class="form-group">
         <!-- <select name="dentists" >
