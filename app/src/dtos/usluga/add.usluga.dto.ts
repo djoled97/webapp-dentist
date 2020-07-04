@@ -2,7 +2,7 @@ import * as Validator from "class-validator";
 import { UslugaCenaDto } from "./usluga.cena.dto";
 import { ValidateNested } from "class-validator";
 import { Type } from 'class-transformer';
-import { UslugaKategorijaDto } from "./usluga.kategorija.dto";
+
 
 export class AddUslugaDto {
 
@@ -26,7 +26,8 @@ export class AddUslugaDto {
   @Type(() => UslugaCenaDto)
   cena: UslugaCenaDto;
 
-  @ValidateNested({always:true})
-  @Type(() => UslugaKategorijaDto)
-  kategorija: UslugaKategorijaDto;
+  @Validator.IsNotEmpty()
+  @Validator.IsNumber()
+  @Validator.IsPositive()
+  kategorijaId: number;
 }

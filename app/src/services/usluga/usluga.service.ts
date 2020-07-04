@@ -20,16 +20,15 @@ export class UslugaService extends TypeOrmCrudService<Usluga>{
 
 
     async createFullUsluga(data: AddUslugaDto): Promise<Usluga | ApiResponse> {
-        let newKategorija: Kategorija = new Kategorija();
-        newKategorija.ime = data.kategorija.ime;
+        
 
-        let savedKategorija = await this.kategorija.save(newKategorija)
+        
         
         let newUsluga: Usluga = new Usluga();
         newUsluga.kataloskiBroj = data.kataloskiBroj;
         newUsluga.nazivUsluge = data.nazivUsluge;
         newUsluga.opis = data.opis;
-        newUsluga.kategorijaId =savedKategorija.kategorijaId;
+        newUsluga.kategorijaId =data.kategorijaId;
         let savedUsluga = await this.usluga.save(newUsluga);
 
         let newCena: Cena = new Cena();
