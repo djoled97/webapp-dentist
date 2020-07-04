@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService as AuthGuard } from './service/auth.guard.service';
-import { AddPatientComponent } from './add-patient/add-patient.component';
-import { RegisterComponent } from './register/register.component';
-import { PatientComponent } from './patient/patient.component';
+import { AddPatientComponent } from './components/add-patient/add-patient.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PatientComponent } from './components/patient/patient.component';
 
 
 

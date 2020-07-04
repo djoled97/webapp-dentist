@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { RegisterService } from '../service/register.service';
-import { confirmedValidator } from '../helpers/confirmed.validator';
+import { RegisterService } from '../../service/register.service';
+import { confirmedValidator } from '../../helpers/confirmed.validator';
 
 
 @Component({

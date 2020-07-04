@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../service/login.service';
+import { LoginService } from '../../service/login.service';
 import { pipe } from 'rxjs';
 import { Router } from '@angular/router';
 import {

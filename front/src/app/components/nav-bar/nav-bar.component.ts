@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { LoginService } from '../service/login.service';
+import { LoginService } from '../../service/login.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

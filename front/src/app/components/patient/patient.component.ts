@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../service/patient.service';
+import { PatientService } from '../../service/patient.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EditPatientDialogComponent } from '../edit-patient-dialog/edit-patient-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../service/user.service';
-import { PatientService } from '../service/patient.service';
+import { UserService } from '../../service/user.service';
+import { PatientService } from '../../service/patient.service';
 import { Observable } from 'rxjs';
-import { LoginService } from '../service/login.service';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-add-patient',
