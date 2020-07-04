@@ -8,6 +8,7 @@ import { Korisnik } from "entities/korisnik.entity";
 import { Validate } from "class-validator";
 import { ApiResponse } from "src/misc/api.response.class";
 import { Usluga } from "entities/usluga.entity";
+import { PatientEditDto } from "src/dtos/pacijent/patient.edit.dto";
 @Injectable()
 export class KartonPacijentService extends TypeOrmCrudService<KartonPacijent>{
 
@@ -36,8 +37,10 @@ export class KartonPacijentService extends TypeOrmCrudService<KartonPacijent>{
 
 
             relations: [
+                "korisnik",
                 "pregleds",
-                "pregleds.usluga"
+                "pregleds.usluga",
+                "pregleds.usluga.kategorija"
             ]
 
 
@@ -52,7 +55,7 @@ export class KartonPacijentService extends TypeOrmCrudService<KartonPacijent>{
 
     }
 
-    async getPatients():Promise<KartonPacijent[] | ApiResponse> {
+     getPatients():Promise<KartonPacijent[] | ApiResponse> {
    
       return      this.karton.find({
                 relations:[
@@ -69,7 +72,18 @@ export class KartonPacijentService extends TypeOrmCrudService<KartonPacijent>{
 
   
     }
+   async editPatient(id:number,data:PatientEditDto): Promise <KartonPacijent>{
+        const patient:KartonPacijent=await this.karton.findOne(id);
+
+        patient.ime=data.ime;
+        patient.prezime=data.prezime;
+        patient.datumRodjenja=data.datumRodjenja;
+        patient.korisnikId=data.korisnikId;
+
+  return    this.karton.save(patient);
     
+      
+    }
     }
 
 

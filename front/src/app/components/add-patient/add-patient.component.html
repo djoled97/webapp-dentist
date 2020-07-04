@@ -43,7 +43,7 @@
         <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="form-group">
+      <div class="form-group ">
         <!-- <select name="dentists" >
             <option *ngFor="let k of Korisnik" [value]="k.id">{{k.ime}}</option>
             
@@ -58,7 +58,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-          <mat-error *ngIf="patientForm.get('korisnikId').hasError('required')"></mat-error>
+          <mat-error *ngIf="patientForm.get('korisnikId').hasError('required') && patientForm.get('korisnikId').touched" ></mat-error>
         
       </div>
 

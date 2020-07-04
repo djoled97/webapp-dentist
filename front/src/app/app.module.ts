@@ -29,6 +29,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { PatientComponent } from './components/patient/patient.component';
 import { EditPatientDialogComponent } from './components/edit-patient-dialog/edit-patient-dialog.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,13 @@ import { EditPatientDialogComponent } from './components/edit-patient-dialog/edi
     MatInputModule,
     MatListModule,
     MatExpansionModule,
+    
    
+    ToastrModule.forRoot({
+      timeOut: 10000,
+    positionClass: 'toast-bottom-center',
+    preventDuplicates: true,
+    }),
     
     AppRoutingModule,
     BrowserModule,

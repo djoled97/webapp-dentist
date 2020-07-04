@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Patient } from '../models/Patient';
 import { Observable } from 'rxjs';
+import { FullPatient } from '../models/FullPatient';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json' ,
@@ -27,4 +28,9 @@ addPatient(patient:Patient){
   editPatient(id:number,patient:Patient){
     return this.http.put<any>(baseUrl + id,patient,httpOptions);
   }
+searchPatients(keyword:string):Observable<any>{
+
+  return this.http.post<any>(baseUrl + "search",keyword,httpOptions);
+}
+
 }
