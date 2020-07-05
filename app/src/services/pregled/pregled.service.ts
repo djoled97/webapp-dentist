@@ -6,6 +6,7 @@ import { Repository } from "typeorm";
 import { AddPregledDto } from "src/dtos/pregled/add.pregled.dto";
 import e = require("express");
 import { SearchPregledDto } from "src/dtos/pregled/search.pregled.dto";
+import { ApiResponse } from "src/misc/api.response.class";
 
 
 @Injectable()
@@ -55,14 +56,18 @@ export class PregledService extends TypeOrmCrudService<Pregled>{
             }
         });
     }
-    async   searchPregledByDate(data:SearchPregledDto) {
+    async   searchPregledByDate(data:SearchPregledDto):Promise<Pregled[]|ApiResponse> {
         const builder = await this.pregled.createQueryBuilder("pregled");
         
         builder.where("pregled.datum >= :kw and pregled.datum  <= :kw2",{kw:data.dateStart ,kw2:data.dateEnd });
 
 
         const searchedPregled:Pregled[]= await builder.getMany();
-
+        // if(searchedPregled.length===0){
+        //     return new Promise((resolve)=>{
+        //         resolve(new ApiResponse("error",-10001))
+        //     })
+        // }
         return this.pregled.findByIds(searchedPregled,{
             relations: [
                 'kartonPacijent',

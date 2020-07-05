@@ -31,3 +31,14 @@ hr{
 width: 120px;
 }
 
+.back{
+ 
+    background-image:url('../../../assets/images/blue-teal-gradient-background.jpg');
+  
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+   
+     
+      
+    }

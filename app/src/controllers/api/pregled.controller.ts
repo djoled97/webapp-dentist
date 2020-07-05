@@ -5,6 +5,7 @@ import { PregledService } from "src/services/pregled/pregled.service";
 import { AddPregledDto } from "src/dtos/pregled/add.pregled.dto";
 import { Usluga } from "entities/usluga.entity";
 import { SearchPregledDto } from "src/dtos/pregled/search.pregled.dto";
+import { ApiResponse } from "src/misc/api.response.class";
 
 
 @Controller('api/pregled')
@@ -55,7 +56,7 @@ getPregleds():Promise<Pregled[]>{
     return this.service.getAllPregleds();
 }
 @Post('search')
-searchPregledByDate(@Body() data:SearchPregledDto){
+searchPregledByDate(@Body() data:SearchPregledDto):Promise<Pregled[]|ApiResponse>{
     return this.service.searchPregledByDate(data);
 }
 }

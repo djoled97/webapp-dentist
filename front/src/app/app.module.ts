@@ -12,7 +12,7 @@ import { LoginService } from './service/login.service';
 import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {MatNativeDateModule} from '@angular/material/core'
+import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core'
 import { AuthGuardService } from './service/auth.guard.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AddPatientComponent } from './components/add-patient/add-patient.component';
@@ -33,6 +33,7 @@ import { PatientComponent } from './components/patient/patient.component';
 import { EditPatientDialogComponent } from './components/edit-patient-dialog/edit-patient-dialog.component';
 import { ToastrModule } from 'ngx-toastr';
 import { InterventionsComponent } from './components/interventions/interventions.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { InterventionsComponent } from './components/interventions/interventions
     MatListModule,
     MatExpansionModule,
     MatTableModule,
+    MatButtonModule,
     
    
     ToastrModule.forRoot({
@@ -91,7 +93,7 @@ import { InterventionsComponent } from './components/interventions/interventions
     }),
     BrowserAnimationsModule
   ],
-  providers: [LoginService,AuthGuardService],
+  providers: [LoginService,AuthGuardService,DatePipe,{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

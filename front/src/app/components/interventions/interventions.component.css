@@ -2,3 +2,27 @@ table{
     width: 80%;
     margin: auto;
 }
+button{
+    background-color: black;
+    color: gray;
+}
+.b1:hover{
+    color: white;
+}
+.b2:hover{
+    color:rgb(168, 5, 33)
+}
+.widerbtn{
+    width:90px;
+}
+.back{
+ 
+    background-image:url('../../../assets/images/blue-teal-gradient-background.jpg');
+  
+    height: 100vh;
+    
+    background-size:cover; width:auto;
+      
+      background-position:50% 50%;
+      
+    }
