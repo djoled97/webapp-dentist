@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {MatTableModule} from '@angular/material/table';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -30,6 +32,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { PatientComponent } from './components/patient/patient.component';
 import { EditPatientDialogComponent } from './components/edit-patient-dialog/edit-patient-dialog.component';
 import { ToastrModule } from 'ngx-toastr';
+import { InterventionsComponent } from './components/interventions/interventions.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,11 @@ import { ToastrModule } from 'ngx-toastr';
    
     PatientComponent,
    
-    EditPatientDialogComponent
+    EditPatientDialogComponent,
+   
+    InterventionsComponent,
+   
+  
     
   ],
   imports: [
@@ -58,6 +66,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatInputModule,
     MatListModule,
     MatExpansionModule,
+    MatTableModule,
     
    
     ToastrModule.forRoot({

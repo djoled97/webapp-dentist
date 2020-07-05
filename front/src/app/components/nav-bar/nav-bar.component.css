@@ -180,3 +180,6 @@
 .active{
   color: white;
 }
+.cursortype{
+  cursor: pointer;
+}

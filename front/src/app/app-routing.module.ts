@@ -6,6 +6,7 @@ import { AuthGuardService as AuthGuard } from './service/auth.guard.service';
 import { AddPatientComponent } from './components/add-patient/add-patient.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PatientComponent } from './components/patient/patient.component';
+import { InterventionsComponent } from './components/interventions/interventions.component';
 
 
 
@@ -27,6 +28,13 @@ const routes: Routes = [{
     }
     
 
+
+  ]},
+  {path:'intervention', canActivate:[AuthGuard],children:[
+    {
+      path:'view',
+      component:InterventionsComponent
+    }
 
   ]}
 ];

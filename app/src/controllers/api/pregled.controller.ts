@@ -1,9 +1,10 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, Get } from "@nestjs/common";
 import { Crud } from "@nestjsx/crud";
 import { Pregled } from "entities/pregled.entity";
 import { PregledService } from "src/services/pregled/pregled.service";
 import { AddPregledDto } from "src/dtos/pregled/add.pregled.dto";
 import { Usluga } from "entities/usluga.entity";
+import { SearchPregledDto } from "src/dtos/pregled/search.pregled.dto";
 
 
 @Controller('api/pregled')
@@ -25,12 +26,19 @@ import { Usluga } from "entities/usluga.entity";
             usluga: {
                 eager: true
                     
-            }
+            },
+            kartonPacijent:{
+                
+                eager:true
+            },
+
+
           
             
             
             
         }
+        
     }
 })
 export class PregledController {
@@ -42,6 +50,12 @@ export class PregledController {
     addPregled(@Body() data:AddPregledDto ){
         return this.service.addPregled(data);
     }
-
-
+@Get()
+getPregleds():Promise<Pregled[]>{
+    return this.service.getAllPregleds();
+}
+@Post('search')
+searchPregledByDate(@Body() data:SearchPregledDto){
+    return this.service.searchPregledByDate(data);
+}
 }
