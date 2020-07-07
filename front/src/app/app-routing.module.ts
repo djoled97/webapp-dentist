@@ -7,6 +7,8 @@ import { AddPatientComponent } from './components/add-patient/add-patient.compon
 import { RegisterComponent } from './components/register/register.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { InterventionsComponent } from './components/interventions/interventions.component';
+import { ServiceComponent } from './components/service-component/service/service.component';
+import { AddServiceComponent } from './components/add-service/add-service.component'
 
 
 
@@ -36,6 +38,15 @@ const routes: Routes = [{
       component:InterventionsComponent
     }
 
+  ]},
+  {path:'service',canActivate:[AuthGuard], children:[
+    {
+      path:'add',
+      component:AddServiceComponent
+    }, {
+      path:'view',
+      component:ServiceComponent
+    },
   ]}
 ];
 

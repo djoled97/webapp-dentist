@@ -26,6 +26,9 @@ import { UslugaSerachDto } from "src/dtos/usluga/usluga.search.dto";
         join: {
             cena: {
                 eager: true
+            },
+            kategorija: {
+                eager: true
             }
         }
     }

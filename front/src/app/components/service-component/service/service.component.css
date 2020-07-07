@@ -1,0 +1,44 @@
+.list{
+    margin-left:240px;
+}
+
+.list-group{
+    width:25%;
+    margin: auto;
+    margin-top: 2%;
+}
+.panel1{
+   width: 35%;
+   margin: auto;
+}
+hr{
+    
+    border: solid 0.5px dimgrey;
+    width: 90%;
+}
+.color{
+    background-color: black;
+    color: #818181
+}
+.btn:hover{
+    color:white;
+}
+.btn{
+    width: 80px;
+    
+}
+.extrawidth{
+width: 120px;
+}
+
+.back{
+ 
+    background-image:url('../../../../assets/images/blue-teal-gradient-background.jpg');
+  
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+   
+     
+      
+    }

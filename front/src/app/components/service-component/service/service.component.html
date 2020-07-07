@@ -1,0 +1,72 @@
+<div class="back">
+    <div class="text-center pt-5">
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch">
+    <mat-form-field appearance="fill">
+        <mat-label>Search by name</mat-label>
+        <input  matInput type="text" formControlName="keywords">
+        <button mat-icon-button matSuffix (click)="onSearch()">
+        <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+    <button class="btn color extrawidth" (click)="addUserNavigation()">Add service</button>
+    </div>
+    
+    
+    
+    <div class="pt-5">
+        <mat-accordion *ngFor="let s of services">
+            <mat-expansion-panel class="panel1">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{s.nazivUsluge}}
+                    </mat-panel-title>
+                   
+                </mat-expansion-panel-header>
+    
+                <label>Catalog number: </label>
+                <p> {{s.kataloskiBroj}}</p>
+               
+                <label>Description: </label>
+                <p> {{s.opis}}</p>
+                <hr>
+                <div class="text-center">
+                    <button class="btn color mb-3 " (click)="openDialog(s)">Edit </button>
+                </div>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Service information</mat-panel-title>
+                        <mat-panel-description>
+                            Price and category of a given service
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <label>Single price:</label>
+                        <p> {{s.cenaJedan}}</p>
+    
+                        <label>Package price: </label>
+                        <p> {{s.cenaPaket}}</p>
+    
+                        <label>Price based on age: </label>
+                        <p> {{s.cenaUzrast}}</p>
+
+                        <label>Category: </label>
+                        <p> {{s.kategorija.ime}}</p>
+                        
+                   
+                    </div>
+              
+                </mat-expansion-panel>
+              
+    
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                
+            </mat-expansion-panel>
+           
+        </mat-accordion>
+    
+    </div>
+    
+    </div>
+    <app-nav-bar></app-nav-bar>

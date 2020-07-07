@@ -9,4 +9,10 @@ import { Kategorija } from "entities/kategorija.entity";
 export class KategorijaService extends TypeOrmCrudService<Kategorija>{
     constructor(@InjectRepository(Kategorija) private readonly kategorija: Repository<Kategorija>
     ) { super(kategorija); }
+
+    getName(): Promise <Kategorija[]> {
+        return this.kategorija.find({
+            select:["kategorijaId", "ime"]
+        })
+    }
 }

@@ -1,0 +1,41 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name:</label>
+      <input type="text" class="form-control" formControlName="nazivUsluge" placeholder="Service name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Catalog number:</label>
+      <input type="number" class="form-control" formControlName="kataloskiBroj" placeholder="Service name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Description:</label>
+        <input type="text" class="form-control"  formControlName="opis" placeholder="Service description">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Single price:</label>
+        <input type="text" class="form-control"  formControlName="cenaJedan" placeholder="Single price of service">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Package price:</label>
+        <input type="text" class="form-control"  formControlName="cenaPaket" placeholder="Package price of service">
+      </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Price for elderly or kids:</label>
+        <input type="text" class="form-control"  formControlName="cenaUzrast" placeholder="Price based on age">
+    </div>
+
+    <label class="labelcolor">Choose category:</label> <br>
+    <mat-form-field  >
+      <mat-label>Category name</mat-label>
+      <mat-select  formControlName="kategorijaId" required>
+        <mat-option>--</mat-option>
+        <mat-option  *ngFor="let s of service" [value]="s.kategorijaId">
+          {{s.ime}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <div class="text-center">
+    <button mat-dialog-close type="submit" class="btn btn-primary text">Submit</button>
+  </div>
+  </form>

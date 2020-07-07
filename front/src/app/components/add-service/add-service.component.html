@@ -1,0 +1,95 @@
+<div class="back">
+    <div class="text-center centerVandH slide-in-left">
+      <div class="slide-bottom">
+        <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group ">
+            <label class="labelcolor">Catalog number:</label>
+            <input type="number" class="form-control text-center " formControlName="kataloskiBroj" placeholder="Enter catalog number" 
+            [ngClass]="{'is-invalid':serviceForm.get('kataloskiBroj').touched && serviceForm.get('kataloskiBroj').invalid, '
+            is-valid':serviceForm.get('kataloskiBroj').valid  }" required>
+            <div *ngIf="serviceForm.get('kataloskiBroj').touched && serviceForm.get('kataloskiBroj').invalid"  class="invalid-feedback">
+              <div *ngIf="serviceForm.get('kataloskiBroj').errors.required ">This field is required</div>
+            </div>
+          </div>
+            
+          
+          <div class="form-group ">
+            <label class="labelcolor">Name:</label>
+            <input type="text" class="form-control text-center " formControlName="nazivUsluge" placeholder="Enter category name"
+            [ngClass]="{'is-invalid':serviceForm.get('nazivUsluge').touched && serviceForm.get('nazivUsluge').invalid, '
+            is-valid':serviceForm.get('nazivUsluge').valid  }" required>
+            <div  *ngIf="serviceForm.get('nazivUsluge').touched && serviceForm.get('nazivUsluge').invalid" class="invalid-feedback">
+              <div *ngIf="serviceForm.get('nazivUsluge').errors.required ">This field is required</div>
+              <div *ngIf="serviceForm.get('nazivUsluge').errors.minlength">Category name must be atleast 2 characters long</div>
+            </div>
+          </div>
+
+
+          <div class="form-group ">
+            <label class="labelcolor">Description:</label>
+            <input type="text" class="form-control text-center " formControlName="opis" placeholder="Write a short description"
+            [ngClass]="{'is-invalid':serviceForm.get('opis').touched && serviceForm.get('opis').invalid, '
+            is-valid':serviceForm.get('opis').valid  }" required>
+            <div  *ngIf="serviceForm.get('opis').touched && serviceForm.get('opis').invalid" class="invalid-feedback">
+              <div *ngIf="serviceForm.get('opis').errors.required ">This field is required</div>
+              <div *ngIf="serviceForm.get('opis').errors.minlength">Description must be at least 15 characters long</div>
+            </div>
+          </div>
+
+
+          <div class="form-group ">
+            <label class="labelcolor">Single price:</label>
+            <input type="number" class="form-control text-center " formControlName="cenaJedan" placeholder="Enter the single price"
+            [ngClass]="{'is-invalid':serviceForm.get('cenaJedan').touched && serviceForm.get('cenaJedan').invalid, '
+            is-valid':serviceForm.get('cenaJedan').valid  }" required>
+            <div  *ngIf="serviceForm.get('cenaJedan').touched && serviceForm.get('cenaJedan').invalid" class="invalid-feedback">
+              <div *ngIf="serviceForm.get('cenaJedan').errors.required ">This field is required</div>
+            </div>
+          </div>
+
+
+          <div class="form-group ">
+            <label class="labelcolor">Package price:</label>
+            <input type="number" class="form-control text-center " formControlName="cenaPaket" placeholder="Enter the package price"
+            [ngClass]="{'is-invalid':serviceForm.get('cenaPaket').touched && serviceForm.get('cenaPaket').invalid, '
+            is-valid':serviceForm.get('cenaPaket').valid  }" required>
+            <div  *ngIf="serviceForm.get('cenaPaket').touched && serviceForm.get('cenaPaket').invalid" class="invalid-feedback">
+              <div *ngIf="serviceForm.get('cenaPaket').errors.required ">This field is required</div>
+            </div>
+          </div>
+
+
+          <div class="form-group ">
+            <label class="labelcolor">Price based on age:</label>
+            <input type="number" class="form-control text-center " formControlName="cenaUzrast" placeholder="Enter the age price"
+            [ngClass]="{'is-invalid':serviceForm.get('cenaUzrast').touched && serviceForm.get('cenaUzrast').invalid, '
+            is-valid':serviceForm.get('cenaUzrast').valid  }" required>
+            <div  *ngIf="serviceForm.get('cenaUzrast').touched && serviceForm.get('cenaUzrast').invalid" class="invalid-feedback">
+              <div *ngIf="serviceForm.get('cenaUzrast').errors.required ">This field is required</div>
+            </div>
+          </div>
+
+          
+          <div class="form-group ">
+            <label class="labelcolor">Choose the category:</label> <br>
+            <mat-form-field class="ml-4" >
+              <mat-label>Name</mat-label>
+              <mat-select class="text-center" formControlName="kategorijaId" required>
+                <mat-option>--</mat-option>
+                <mat-option  class="not-empty-select.mat-selected" *ngFor="let k of kategorija" [value]="k.kategorijaId">
+                  {{k.ime}} {{k.prezime}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+              <mat-error *ngIf="serviceForm.get('kategorijaId').hasError('required') && serviceForm.get('kategorijaId').touched" ></mat-error>
+           </div>
+    
+          <div class="submit">
+          <button  type="submit" [disabled]="!serviceForm.valid"  class="btn btn-primary " ><mat-icon>check_box</mat-icon></button>
+        </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    <app-nav-bar></app-nav-bar>

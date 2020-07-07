@@ -34,6 +34,9 @@ import { EditPatientDialogComponent } from './components/edit-patient-dialog/edi
 import { ToastrModule } from 'ngx-toastr';
 import { InterventionsComponent } from './components/interventions/interventions.component';
 import { DatePipe } from '@angular/common';
+import { ServiceComponent } from "./components/service-component/service/service.component"
+import { EditServiceDialogComponent } from './components/edit-service-dialog/edit-service-dialog.component';
+import { AddServiceComponent } from './components/add-service/add-service.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,12 @@ import { DatePipe } from '@angular/common';
     EditPatientDialogComponent,
    
     InterventionsComponent,
+   
+EditServiceDialogComponent,
+
+    ServiceComponent,
+
+    AddServiceComponent
    
   
     
