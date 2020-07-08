@@ -1,25 +1,57 @@
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="exampleInputEmail1">Name:</label>
-    <input type="text" class="form-control" formControlName="ime" placeholder="Enter Name">
- 
+    <input type="text" class="form-control" formControlName="ime" placeholder="Enter Name" 
+    [ngClass]="{'is-invalid':editForm.get('ime').touched && editForm.get('ime').invalid,'
+    is-valid':editForm.get('ime').valid  }"
+    >
+    <div *ngIf="editForm.get('ime').touched && editForm.get('ime').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('ime').dirty && editForm.get('ime').errors.required">
+        Name is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('ime').errors.minlength">
+        Name must be atleast 2 characters long  </div>
+  
+    </div>
+  
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Last name:</label>
-    <input type="text" class="form-control"  formControlName="prezime" placeholder="Enter Last name">
+    <input type="text" class="form-control" formControlName="prezime" placeholder="Enter Last name"
+    [ngClass]="{'is-invalid':editForm.get('prezime').touched && editForm.get('prezime').invalid,'
+    is-valid':editForm.get('ime').valid  }"
+    >
+    <div *ngIf="editForm.get('prezime').touched && editForm.get('prezime').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('prezime').dirty && editForm.get('prezime').errors.required">
+        Last name is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('prezime').errors.minlength">
+        Last name must be atleast 2 characters long  </div>
+  
+    </div>
+  
+  
+  
+  
   </div>
   <label class="labelcolor">Choose dentist:</label> <br>
-  <mat-form-field  >
+  <mat-form-field>
     <mat-label>Name and Last name</mat-label>
-    <mat-select  formControlName="korisnikId" required>
+    <mat-select formControlName="korisnikId" required>
       <mat-option>--</mat-option>
-      <mat-option  *ngFor="let k of korisnik" [value]="k.korisnikId">
+      <mat-option *ngFor="let k of korisnik" [value]="k.korisnikId">
         {{k.ime}} {{k.prezime}}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf=" editForm.get('korisnikId').errors.required">This field is required  </mat-error>
   </mat-form-field>
   <br>
   <div class="text-center">
-  <button mat-dialog-close type="submit" class="btn btn-primary text">Submit</button>
-</div>
+    <button  type="submit" class="btn btn-primary text mt-3">Submit</button>
+  </div>
+ 
 </form>

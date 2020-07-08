@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PatientService } from '../../service/patient.service';
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,9 +19,9 @@ export class EditPatientDialogComponent implements OnInit {
 
   id:number;
   editForm=this.fb.group({
-    ime:[''],
-    prezime:[''],
-    korisnikId:['']
+    ime:['',[Validators.required,Validators.minLength(3)]],
+    prezime:['',[Validators.required,Validators.minLength(3)]],
+    korisnikId:['',[Validators.required]]
   })
   
 
@@ -37,9 +37,13 @@ export class EditPatientDialogComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getKorisnikName().subscribe(data =>{
       this.korisnik=data;
+    
     })
   }
   onSubmit(){
+   
+   if(this.editForm.valid){
+     this.dialogRef.close();
     this.patientService.editPatient(this.id,this.editForm.value).subscribe( ()=>{
       this.toastr.success('User edited successfully','',{
         closeButton:true,
@@ -50,4 +54,5 @@ export class EditPatientDialogComponent implements OnInit {
       })
     })
   }
+}
 }

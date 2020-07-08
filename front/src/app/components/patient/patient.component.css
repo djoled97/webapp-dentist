@@ -27,9 +27,7 @@ hr{
     width: 80px;
     
 }
-.extrawidth{
-width: 120px;
-}
+
 
 .back{
  
@@ -41,4 +39,18 @@ width: 120px;
    
      
       
+    }
+
+    .btncolor{
+        background-color: black;
+        color: gray;
+    }
+    .b1:hover{
+        color: white;
+    }
+    .b2:hover{
+        color:rgb(168, 5, 33)
+    }
+    .widerbtn{
+        width:120px;
     }

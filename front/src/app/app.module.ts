@@ -99,7 +99,7 @@ EditServiceDialogComponent,
         tokenGetter: ()=>{
           return localStorage.getItem("token");
         },
-        whitelistedDomains: ["localhost:3001"],
+        whitelistedDomains: [],
         blacklistedRoutes: [],
       },
     }),
