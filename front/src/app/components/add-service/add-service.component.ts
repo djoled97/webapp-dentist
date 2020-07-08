@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/service/category.service';
 import { ServicesService } from 'src/app/service/services.service';
+import { Category } from 'src/app/models/Category'
+import { MatDialog } from '@angular/material/dialog';
+import { AddCategoryDialogComponent } from '../add-category-dialog/add-category-dialog.component';
 
 @Component({
   selector: 'app-add-service',
@@ -26,7 +29,7 @@ export class AddServiceComponent implements OnInit {
     kategorijaId:['']
   })
   constructor(private fb: FormBuilder, private service:ServicesService, private categoryService:CategoryService
-   ,private toastr:ToastrService
+   ,private toastr:ToastrService, private dialog: MatDialog
     ) {
     this.categoryService.getCategoryName().subscribe(data=>{
        this.kategorija=data;
@@ -36,6 +39,8 @@ export class AddServiceComponent implements OnInit {
   ngOnInit(): void {
    
   }
+
+
   onSubmit() {
   return  this.service.addService(this.serviceForm.value).subscribe( () =>{
     this.toastr.success('Service added','',{
@@ -46,4 +51,10 @@ export class AddServiceComponent implements OnInit {
   });
   
   }
+
+  openDialog() {
+    const dialog = this.dialog.open(AddCategoryDialogComponent);
+  }
+
+  
 }

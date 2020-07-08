@@ -20,4 +20,8 @@ export class CategoryService {
   getCategoryName() {
     return this.http.get<any>(baseUrl + "name", httpOptions);
   }
+
+  addCategory(category: any) {
+    return this.http.post<any>(baseUrl, category, httpOptions);
+  }
 }

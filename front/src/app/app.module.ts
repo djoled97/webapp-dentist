@@ -37,6 +37,7 @@ import { DatePipe } from '@angular/common';
 import { ServiceComponent } from "./components/service-component/service/service.component"
 import { EditServiceDialogComponent } from './components/edit-service-dialog/edit-service-dialog.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
+import { AddCategoryDialogComponent } from './components/add-category-dialog/add-category-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,9 @@ EditServiceDialogComponent,
 
     ServiceComponent,
 
-    AddServiceComponent
+    AddServiceComponent,
+
+    AddCategoryDialogComponent
    
   
     

@@ -78,17 +78,23 @@
               <mat-select class="text-center" formControlName="kategorijaId" required>
                 <mat-option>--</mat-option>
                 <mat-option  class="not-empty-select.mat-selected" *ngFor="let k of kategorija" [value]="k.kategorijaId">
-                  {{k.ime}} {{k.prezime}}
+                  {{k.ime}}
                 </mat-option>
+                <div class="text-center">
+                <hr>
+                  <button class="btn color mb-3" color="red" (click)="openDialog()">Add a new category</button>
+                </div> 
               </mat-select>
             </mat-form-field>
               <mat-error *ngIf="serviceForm.get('kategorijaId').hasError('required') && serviceForm.get('kategorijaId').touched" ></mat-error>
            </div>
-    
+                     
+
           <div class="submit">
           <button  type="submit" [disabled]="!serviceForm.valid"  class="btn btn-primary " ><mat-icon>check_box</mat-icon></button>
         </div>
         </form>
+        
       </div>
     </div>
     </div>
