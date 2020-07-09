@@ -7,7 +7,7 @@ export interface Intervention {
 
         ime: string,
         prezime: string,
-
+        datumRodjenja:string
         korisnik: {
 
             ime: string,
@@ -15,6 +15,12 @@ export interface Intervention {
         }
         usluga:{
             nazivUsluge:string;
+        },
+        cena:{
+            cenaId: number,
+            cenaJedan: number,
+            cenaPaket: number,
+            cenaUzrast: number
         }
     }
 }

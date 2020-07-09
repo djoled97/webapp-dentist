@@ -16,19 +16,25 @@ export class PregledService extends TypeOrmCrudService<Pregled>{
 
     async  addPregled(data: AddPregledDto): Promise<Pregled> {
 
-        const newpregled: Pregled = new Pregled();
+        let newpregled: Pregled ;
+
+        for(let uslugaid of data.uslugaid){
+            newpregled = new Pregled();
+            newpregled.uslugaId = uslugaid;
 
 
+            newpregled.kartonPacijentId = data.kartonPacijentId;
+            if (!data.datum) {
+                newpregled.datum = new Date();
+            } else {
+                newpregled.datum = data.datum;
+            }
+    
+            await this.pregled.save(newpregled);
+        }   
 
-        newpregled.uslugaId = data.uslugaid;
-        newpregled.kartonPacijentId = data.kartonPacijentId;
-        if (!data.datum) {
-            newpregled.datum = new Date();
-        } else {
-            newpregled.datum = data.datum;
-        }
-
-        await this.pregled.save(newpregled);
+      
+       
 
         return await this.pregled.findOne(newpregled.pregledId, {
 
@@ -49,6 +55,7 @@ export class PregledService extends TypeOrmCrudService<Pregled>{
             relations: [
                 'kartonPacijent',
                 'usluga',
+                'usluga.cena',
                 'kartonPacijent.korisnik'
             ],
             order: {
@@ -59,19 +66,21 @@ export class PregledService extends TypeOrmCrudService<Pregled>{
     async   searchPregledByDate(data:SearchPregledDto):Promise<Pregled[]|ApiResponse> {
         const builder = await this.pregled.createQueryBuilder("pregled");
         
-        builder.where("pregled.datum >= :kw and pregled.datum  <= :kw2",{kw:data.dateStart ,kw2:data.dateEnd });
+        builder.where("pregled.datum >= :kw and pregled.datum  <= :kw2",{kw:  data.dateStart  , kw2: data.dateEnd });
 
 
-        const searchedPregled:Pregled[]= await builder.getMany();
+        const searchedPregleds:Pregled[]= await builder.getMany();
+            
         // if(searchedPregled.length===0){
         //     return new Promise((resolve)=>{
         //         resolve(new ApiResponse("error",-10001))
         //     })
         // }
-        return this.pregled.findByIds(searchedPregled,{
+        return this.pregled.findByIds(searchedPregleds,{
             relations: [
                 'kartonPacijent',
                 'usluga',
+                'usluga.cena',
                 'kartonPacijent.korisnik'
             ],
             order: {

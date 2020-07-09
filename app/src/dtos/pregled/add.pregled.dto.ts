@@ -1,6 +1,6 @@
 export class AddPregledDto{
 
-    uslugaid:number;
+    uslugaid:number[];
     kartonPacijentId:number;
     datum?:Date
 

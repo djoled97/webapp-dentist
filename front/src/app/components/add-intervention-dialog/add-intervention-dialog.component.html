@@ -1,0 +1,41 @@
+<form [formGroup]="addInterventionForm" (ngSubmit)="onAddIntervention()" >
+   
+    
+    <mat-form-field>
+     
+   
+      <mat-label>Choose service</mat-label>
+      <mat-select   formControlName="uslugaid"  required  multiple>
+        
+        <mat-option *ngFor="let u of usluga"    [(value)]="u.uslugaId">
+            {{u.nazivUsluge}}
+        </mat-option>
+      </mat-select>
+    
+    </mat-form-field>
+    <br>
+    
+    <mat-form-field>
+    
+        
+        
+        <mat-label>Choose patient</mat-label>
+        <mat-select  formControlName="kartonPacijentId" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let k of karton"  [value]="k.kartonPacijentId">
+           {{k.ime}} {{k.prezime}}
+          </mat-option>
+        </mat-select>
+      
+      </mat-form-field>
+      
+     
+    
+    
+ <br>
+   
+    <div class="text-center">
+      <button  type="submit" class="btn btn-primary text mt-3">Add</button>
+    </div>
+   
+  </form>

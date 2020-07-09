@@ -38,7 +38,8 @@ import { ServiceComponent } from "./components/service-component/service/service
 import { EditServiceDialogComponent } from './components/edit-service-dialog/edit-service-dialog.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
 import { AddCategoryDialogComponent } from './components/add-category-dialog/add-category-dialog.component';
-
+import { AddInterventionDialogComponent } from './components/add-intervention-dialog/add-intervention-dialog.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,9 @@ EditServiceDialogComponent,
 
     AddServiceComponent,
 
-    AddCategoryDialogComponent
+    AddCategoryDialogComponent,
+
+    AddInterventionDialogComponent
    
   
     
@@ -81,6 +84,7 @@ EditServiceDialogComponent,
     MatExpansionModule,
     MatTableModule,
     MatButtonModule,
+    MatCheckboxModule,
     
    
     ToastrModule.forRoot({

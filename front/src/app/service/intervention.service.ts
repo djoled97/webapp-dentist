@@ -28,6 +28,8 @@ export class InterventionService {
 
     return this.http.post<Intervention[]>(baseUrl + "search",{dateStart,dateEnd},httpOptions);
   }
-
+addIntervention(intervetnion:Intervention):Observable<Intervention>{
+  return this.http.post<Intervention>(baseUrl , intervetnion,httpOptions);
+}
 
 }
