@@ -1,41 +1,119 @@
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Name:</label>
-      <input type="text" class="form-control" formControlName="nazivUsluge" placeholder="Service name">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Catalog number:</label>
-      <input type="number" class="form-control" formControlName="kataloskiBroj" placeholder="Service name">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Description:</label>
-        <input type="text" class="form-control"  formControlName="opis" placeholder="Service description">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Single price:</label>
-        <input type="text" class="form-control"  formControlName="cenaJedan" placeholder="Single price of service">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Package price:</label>
-        <input type="text" class="form-control"  formControlName="cenaPaket" placeholder="Package price of service">
-      </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Price for elderly or kids:</label>
-        <input type="text" class="form-control"  formControlName="cenaUzrast" placeholder="Price based on age">
-    </div>
 
-    <label class="labelcolor">Choose category:</label> <br>
-    <mat-form-field  >
-      <mat-label>Category name</mat-label>
-      <mat-select  formControlName="kategorijaId" required>
-        <mat-option>--</mat-option>
-        <mat-option  *ngFor="let s of service" [value]="s.kategorijaId">
-          {{s.ime}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <div class="text-center">
-    <button mat-dialog-close type="submit" class="btn btn-primary text">Submit</button>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name:</label>
+    <input type="text" class="form-control" formControlName="nazivUsluge" placeholder="Service name"
+    [ngClass]="{'is-invalid':editForm.get('nazivUsluge').touched && editForm.get('nazivUsluge').invalid,
+    'is-valid':editForm.get('nazivUsluge').valid  }">
+
+    <div *ngIf="editForm.get('nazivUsluge').touched && editForm.get('nazivUsluge').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('nazivUsluge').dirty && editForm.get('nazivUsluge').errors.required">
+        Name is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('nazivUsluge').errors.minlength">
+        Name must be atleast 2 characters long  </div>
+    </div>
   </div>
-  </form>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Catalog number:</label>
+    <input type="number" class="form-control" formControlName="kataloskiBroj" placeholder="Service name"
+    [ngClass]="{'is-invalid':editForm.get('kataloskiBroj').touched && editForm.get('kataloskiBroj').invalid,
+    'is-valid':editForm.get('kataloskiBroj').valid  }">
+
+    <div *ngIf="editForm.get('kataloskiBroj').touched && editForm.get('kataloskiBroj').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('kataloskiBroj').dirty && editForm.get('kataloskiBroj').errors.required">
+        This field is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('kataloskiBroj').errors.pattern">
+        This field must contain only numbers </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Description:</label>
+    <input type="text" class="form-control" formControlName="opis" placeholder="Service description"
+    [ngClass]="{'is-invalid':editForm.get('opis').touched && editForm.get('opis').invalid,
+    'is-valid':editForm.get('opis').valid  }">
+
+    <div *ngIf="editForm.get('opis').touched && editForm.get('opis').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('opis').dirty && editForm.get('opis').errors.required">
+        This field is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('opis').errors.minLength">
+        Description must be atleast 5 characters long </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Single price:</label>
+    <input type="text" class="form-control" formControlName="cenaJedan" placeholder="Single price of service"
+    [ngClass]="{'is-invalid':editForm.get('cenaJedan').touched && editForm.get('cenaJedan').invalid,
+    'is-valid':editForm.get('cenaJedan').valid  }">
+
+    <div *ngIf="editForm.get('cenaJedan').touched && editForm.get('cenaJedan').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('cenaJedan').dirty && editForm.get('cenaJedan').errors.required">
+        This field is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('cenaJedan').errors.pattern">
+        This field must contain only numbers </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Package price:</label>
+    <input type="text" class="form-control" formControlName="cenaPaket" placeholder="Package price of service"
+    [ngClass]="{'is-invalid':editForm.get('cenaPaket').touched && editForm.get('cenaPaket').invalid,
+    'is-valid':editForm.get('cenaPaket').valid  }">
+
+    <div *ngIf="editForm.get('cenaPaket').touched && editForm.get('cenaPaket').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('cenaPaket').dirty && editForm.get('cenaPaket').errors.required">
+        This field is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('cenaPaket').errors.pattern">
+        This field must contain only numbers </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Price for elderly or kids:</label>
+    <input type="text" class="form-control" formControlName="cenaUzrast" placeholder="Price based on age"
+    [ngClass]="{'is-invalid':editForm.get('cenaUzrast').touched && editForm.get('cenaUzrast').invalid,
+    'is-valid':editForm.get('cenaUzrast').valid  }">
+
+    <div *ngIf="editForm.get('cenaUzrast').touched && editForm.get('cenaUzrast').invalid" class="invalid-feedback">
+   
+      <div class="alert alert-danger" role="alert"
+        *ngIf="editForm.get('cenaUzrast').dirty && editForm.get('cenaUzrast').errors.required">
+        This field is required</div>
+        <div class="alert alert-danger" role="alert"
+        *ngIf=" editForm.get('cenaUzrast').errors.pattern">
+        This field must contain only numbers </div>
+    </div>
+  </div>
+
+  <label class="labelcolor">Choose category:</label> <br>
+  <mat-form-field>
+    <mat-label>Category name</mat-label>
+    <mat-select formControlName="kategorijaId">
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let s of service" [value]="s.kategorijaId">
+        {{s.ime}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <div class="text-center">
+    <button mat-dialog-close type="submit" [disabled]="!editForm.valid" class="btn btn-primary text">Submit</button>
+  </div>
+</form>

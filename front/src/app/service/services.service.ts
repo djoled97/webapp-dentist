@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Service } from '../models/Service';
 import { Observable } from 'rxjs';
+import { FullService } from 'src/app/models/FullService'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,7 +28,7 @@ export class ServicesService {
     return this.http.get<any>(baseUrl, httpOptions);
   }
 
-  editService(id: number, service: any) {
+  editService(id: number, service: FullService) {
     return this.http.put<any>(baseUrl + id, service, httpOptions);
   }
 
