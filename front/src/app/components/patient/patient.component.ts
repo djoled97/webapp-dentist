@@ -38,8 +38,8 @@ export class PatientComponent implements OnInit {
     dialogConfig.data = {
       id: patient.kartonPacijentId,
       name: patient.ime,
-      lastname: patient.prezime
-
+      lastname: patient.prezime,
+      dentistId:patient.korisnik.korisnikId
     }
 
     this.dialog.open(EditPatientDialogComponent, dialogConfig)

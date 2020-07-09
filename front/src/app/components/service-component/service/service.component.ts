@@ -36,10 +36,8 @@ export class ServiceComponent implements OnInit {
     console.log(service)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      id: service.uslugaId,
-      catalogNumber: service.kataloskiBroj,
-      serviceName: service.nazivUsluge,
-      description: service.opis,
+      
+      service
     }
     const dialog = this.dialog.open(EditServiceDialogComponent, dialogConfig);
   }

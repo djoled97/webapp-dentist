@@ -2,17 +2,17 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PatientService } from '../../service/patient.service';
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { ServicesService } from 'src/app/service/services.service';
-import { CategoryService } from 'src/app/service/category.service'
+import { ServicesService } from '../../service/services.service';
+import { CategoryService } from '../..//service/category.service'
 
 @Component({
   selector: 'app-edit-service-dialog',
   templateUrl: './edit-service-dialog.component.html',
   styleUrls: ['./edit-service-dialog.component.css']
 })
-export class EditServiceDialogComponent implements OnInit {
+export class  EditServiceDialogComponent implements OnInit {
   service:{
     id: number,
     kataloskiBroj: number,
@@ -35,14 +35,15 @@ export class EditServiceDialogComponent implements OnInit {
   constructor(private fb:FormBuilder,private dialogRef: MatDialogRef<EditServiceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,private servicesService:ServicesService, private categoryService: CategoryService
     ,private toastr:ToastrService) { 
-     this.id=data.id;
-     this.editForm.get('kataloskiBroj').setValue(data.kataloskiBroj);
-     this.editForm.get('nazivUsluge').setValue(data.naziv);
-     this.editForm.get('opis').setValue(data.opis);
-     this.editForm.get('cenaJedan').setValue(data.cenaJedan);
-     this.editForm.get('cenaPaket').setValue(data.cenaPaket);
-     this.editForm.get('cenaUzrast').setValue(data.cenaUzrast);
-
+     console.log(data);
+      this.id=data.service.uslugaId;
+     this.editForm.get('kataloskiBroj').setValue(data.service.kataloskiBroj);
+     this.editForm.get('nazivUsluge').setValue(data.service.nazivUsluge);
+     this.editForm.get('opis').setValue(data.service.opis);
+     this.editForm.get('cenaJedan').setValue(data.service.cena.cenaJedan);
+     this.editForm.get('cenaPaket').setValue(data.service.cena.cenaPaket);
+     this.editForm.get('cenaUzrast').setValue(data.service.cena.cenaUzrast);
+     this.editForm.get('kategorijaId').setValue(data.service.kategorija.kategorijaId);
     }
 
   ngOnInit(): void {

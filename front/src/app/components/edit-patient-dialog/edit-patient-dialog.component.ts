@@ -31,7 +31,7 @@ export class EditPatientDialogComponent implements OnInit {
      this.id=data.id;
       this.editForm.get('ime').setValue(data.name);
      this.editForm.get('prezime').setValue(data.lastname);
-      
+     this.editForm.get('korisnikId').setValue(data.dentistId);
     }
 
   ngOnInit(): void {

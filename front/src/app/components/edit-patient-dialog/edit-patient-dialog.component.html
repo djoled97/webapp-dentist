@@ -41,13 +41,13 @@
   <label class="labelcolor">Choose dentist:</label> <br>
   <mat-form-field>
     <mat-label>Name and Last name</mat-label>
-    <mat-select formControlName="korisnikId" required>
+    <mat-select formControlName="korisnikId" required >
       <mat-option>--</mat-option>
       <mat-option *ngFor="let k of korisnik" [value]="k.korisnikId">
         {{k.ime}} {{k.prezime}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf=" editForm.get('korisnikId').errors.required">This field is required  </mat-error>
+   
   </mat-form-field>
   <br>
   <div class="text-center">
