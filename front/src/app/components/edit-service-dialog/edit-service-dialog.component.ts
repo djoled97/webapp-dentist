@@ -22,12 +22,12 @@ export class  EditServiceDialogComponent implements OnInit {
 
   id:number;
   editForm=this.fb.group({
-    nazivUsluge:['',[Validators.required]],
-    opis:['', [Validators.required]],
-    kataloskiBroj:['',[Validators.required]],
-    cenaJedan: ['', [Validators.required]],
-    cenaPaket: ['', [Validators.required]],
-    cenaUzrast: ['',[Validators.required]],
+    nazivUsluge:['',[Validators.required, Validators.minLength(2)]],
+    opis:['', [Validators.required, Validators.minLength(5)]],
+    kataloskiBroj:['',[Validators.required, Validators.pattern(/^[0-9]*$/)]],
+    cenaJedan: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
+    cenaPaket: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
+    cenaUzrast: ['',[Validators.required, Validators.pattern(/^[0-9]*$/)]],
     kategorijaId:[''],
   })
   
@@ -58,8 +58,6 @@ export class  EditServiceDialogComponent implements OnInit {
         closeButton:true,
         timeOut:2000
 
-      }).onHidden.subscribe(()=>{
-        window.location.reload();
       })
     })
   }
