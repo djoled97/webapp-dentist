@@ -41,12 +41,14 @@ export class AddPatientComponent implements OnInit {
   
   }
   onSubmit() {
-  return  this.patientSerivce.addPatient(this.patientForm.value).subscribe( () =>{
+    
+    this.patientSerivce.addPatient(this.patientForm.value).subscribe( () =>{
     this.toastr.success('User added','',{
       closeButton:true
     });
-    this.patientForm.reset();
-    
+    this.patientForm.markAsPristine();
+        this.patientForm.markAsUntouched();
+        this.patientForm.updateValueAndValidity();
   });
   
   }

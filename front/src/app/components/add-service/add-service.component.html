@@ -16,7 +16,7 @@
           
           <div class="form-group ">
             <label class="labelcolor">Name:</label>
-            <input type="text" class="form-control text-center " formControlName="nazivUsluge" placeholder="Enter category name"
+            <input type="text" class="form-control text-center " formControlName="nazivUsluge" placeholder="Enter service name"
             [ngClass]="{'is-invalid':serviceForm.get('nazivUsluge').touched && serviceForm.get('nazivUsluge').invalid, '
             is-valid':serviceForm.get('nazivUsluge').valid  }" required>
             <div  *ngIf="serviceForm.get('nazivUsluge').touched && serviceForm.get('nazivUsluge').invalid" class="invalid-feedback">
